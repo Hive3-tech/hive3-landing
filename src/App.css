@@ -7,6 +7,10 @@
   margin: 0 auto;
 }
 
+.web3-container {
+  width: min(1380px, calc(100% - 48px));
+}
+
 .section {
   padding: 100px 0;
 }
@@ -475,8 +479,7 @@
 
 .features-header,
 .monetize-grid,
-.ai-grid,
-.web3-banner {
+.ai-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 56px;
@@ -775,6 +778,14 @@
   font-size: 28px;
 }
 
+.web3-layout {
+  display: grid;
+  grid-template-columns: minmax(760px, 900px) minmax(260px, 1fr);
+  gap: 64px;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .web3-banner {
   position: relative;
   overflow: hidden;
@@ -798,6 +809,13 @@
   );
 }
 
+.web3-banner {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 56px;
+  align-items: center;
+}
+
 .web3-tag {
   display: inline-flex;
   align-items: center;
@@ -811,6 +829,14 @@
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.1em;
+}
+
+.web3-title {
+  max-width: 9.6ch;
+}
+
+.web3-title-line {
+  display: block;
 }
 
 .web3-pillars {
@@ -839,6 +865,255 @@
   flex-shrink: 0;
   text-align: center;
   font-size: 24px;
+}
+
+/* ── CONSTELLATION WEB (Full Width) ── */
+.constellation-wrapper {
+  margin-top: 32px;
+  width: 100%;
+}
+
+.constellation-container {
+  position: relative;
+  width: 100%;
+  height: 414px;
+  overflow: visible;
+}
+
+.constellation-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.constellation-center-glow {
+  animation: centerPulse 4s ease-in-out infinite;
+}
+
+@keyframes centerPulse {
+  0%, 100% { opacity: 0.08; transform-origin: center; transform: scale(1); }
+  50% { opacity: 0.2; transform-origin: center; transform: scale(1.3); }
+}
+
+/* Center Hub */
+.constellation-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.constellation-center-ring {
+  position: absolute;
+  width: 92px;
+  height: 92px;
+  border: 1px solid rgba(245, 200, 66, 0.15);
+  border-radius: 50%;
+  animation: ringPulse 3s ease-in-out infinite;
+}
+
+@keyframes ringPulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+.constellation-center-hub {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(245, 200, 66, 0.25);
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(245, 200, 66, 0.1), rgba(79, 142, 255, 0.08));
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    0 0 40px rgba(245, 200, 66, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  z-index: 10;
+}
+
+.constellation-center-logo {
+  width: 37px;
+  height: 37px;
+  opacity: 0.9;
+}
+
+/* Network Nodes */
+@keyframes constellationFloat {
+  0%, 100% {
+    transform: translate(-50%, -50%) translate(0, 0);
+  }
+  33% {
+    transform: translate(-50%, -50%) translate(5px, -4px);
+  }
+  66% {
+    transform: translate(-50%, -50%) translate(-4px, 5px);
+  }
+}
+
+.constellation-node {
+  position: absolute;
+  z-index: 5;
+  cursor: pointer;
+  animation: constellationFloat 8s ease-in-out infinite;
+  transform: translate(-50%, -50%);
+}
+
+.constellation-node-glow {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 200, 66, 0.3), transparent 70%);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.constellation-node:hover .constellation-node-glow {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.constellation-node-icon-wrap {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  background: rgba(13, 16, 24, 0.95);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.constellation-node:hover .constellation-node-icon-wrap {
+  border-color: rgba(245, 200, 66, 0.4);
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(245, 200, 66, 0.15);
+  transform: scale(1.1);
+}
+
+.constellation-node-icon {
+  width: 37px;
+  height: 37px;
+  object-fit: contain;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.constellation-node:hover .constellation-node-icon {
+  opacity: 1;
+}
+
+.constellation-node-name {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.constellation-node:hover .constellation-node-name {
+  opacity: 1;
+}
+
+/* Coming Soon */
+.coming-soon-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  margin-top: 32px;
+}
+
+.coming-soon-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.7;
+  white-space: nowrap;
+}
+
+.coming-soon-chains {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.coming-soon-node {
+  position: relative;
+  animation: none;
+  transform: none;
+  opacity: 0.55;
+  transition: opacity 0.25s ease;
+}
+
+.coming-soon-node:hover {
+  opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .constellation-container {
+    height: 300px;
+  }
+
+  .constellation-center-hub {
+    width: 55px;
+    height: 55px;
+    border-radius: 14px;
+  }
+
+  .constellation-center-logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .constellation-center-ring {
+    width: 74px;
+    height: 74px;
+  }
+
+  .constellation-node-icon-wrap {
+    width: 53px;
+    height: 53px;
+    padding: 11px;
+    border-radius: 14px;
+  }
+
+  .constellation-node-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .constellation-node-name {
+    font-size: 10px;
+  }
+
+  .coming-soon-chains {
+    gap: 16px;
+  }
 }
 
 .testimonials-wrapper {
@@ -1487,7 +1762,7 @@
   .features-header,
   .monetize-grid,
   .ai-grid,
-  .web3-banner,
+  .web3-layout,
   .footer-bottom {
     grid-template-columns: 1fr;
   }
@@ -1498,9 +1773,17 @@
     gap: 40px;
   }
 
+  .web3-layout {
+    gap: 32px;
+  }
+
   .web3-banner {
     gap: 32px;
     padding: 40px 28px;
+  }
+
+  .web3-title {
+    max-width: none;
   }
 
   .testimonials-header {

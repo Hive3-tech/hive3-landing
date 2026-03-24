@@ -15,6 +15,7 @@ import {
   testimonials,
   tickerItems,
   trustItems,
+  web3Networks,
   web3Pillars,
 } from './data/landingContent'
 import { SiteFooter } from './components/landing/SiteFooter'
@@ -55,7 +56,7 @@ function App() {
         />
         <FeatureSection featureCards={featureCards} />
         <MonetizeSection revenueCards={revenueCards} />
-        <Web3Section web3Pillars={web3Pillars} />
+        <Web3Section web3Networks={web3Networks} web3Pillars={web3Pillars} />
         <TestimonialsSection testimonials={testimonials} />
         <HowItWorksSection steps={steps} />
         <AiSection aiFeatures={aiFeatures} />

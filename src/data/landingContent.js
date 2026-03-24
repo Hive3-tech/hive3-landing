@@ -4,9 +4,9 @@ export const navLinks = [
   { href: '#web3', label: 'Web3' },
   { href: '#testimonials', label: 'Community' },
   { href: '#ai', label: 'AI' },
-]
+];
 
-export const rotatingWords = ['Creators', 'Communities', 'Builders']
+export const rotatingWords = ['Creators', 'Communities', 'Builders'];
 
 export const avatarBadges = [
   {
@@ -44,7 +44,7 @@ export const avatarBadges = [
     role: 'NFT Creator',
     style: { backgroundColor: '#e74c3c', color: '#ffffff' },
   },
-]
+];
 
 export const tickerItems = [
   'Own Your Audience',
@@ -55,7 +55,7 @@ export const tickerItems = [
   'AI-Powered Matchmaking',
   'Token-Gated Access',
   'Decentralized Identity',
-]
+];
 
 export const trustItems = [
   { icon: '🏆', text: 'CryptoKnights Featured' },
@@ -63,7 +63,7 @@ export const trustItems = [
   { icon: '📰', text: 'CoinTelegraph Partner' },
   { icon: '🌐', text: '40+ Countries' },
   { icon: '🔒', text: 'Web3-Native & Secure' },
-]
+];
 
 export const featureCards = [
   {
@@ -87,8 +87,7 @@ export const featureCards = [
   {
     icon: '🗓️',
     title: 'Events',
-    description:
-      'Host live events, virtual meetups, IRL gatherings, and token-gated experiences.',
+    description: 'Host live events, virtual meetups, IRL gatherings, and token-gated experiences.',
   },
   {
     icon: '🏛️',
@@ -102,34 +101,30 @@ export const featureCards = [
     description:
       'Post jobs, partnerships, grants, and deals. Connect your community with real opportunities.',
   },
-]
+];
 
 export const revenueCards = [
   {
     icon: '🎟️',
     title: 'Memberships',
-    description:
-      'Sell recurring memberships and create a sustainable income from your community.',
+    description: 'Sell recurring memberships and create a sustainable income from your community.',
   },
   {
     icon: '🔐',
     title: 'Token-Gated Content',
-    description:
-      'Gate premium content by NFT ownership, token holdings, or subscription tier.',
+    description: 'Gate premium content by NFT ownership, token holdings, or subscription tier.',
   },
   {
     icon: '👑',
     title: 'Premium Tiers',
-    description:
-      'Offer exclusive rights, early access, and VIP benefits to your top members.',
+    description: 'Offer exclusive rights, early access, and VIP benefits to your top members.',
   },
   {
     icon: '📊',
     title: 'Ads & Sponsorships',
-    description:
-      'Run community-native ads and sponsorships on your own terms, keeping control.',
+    description: 'Run community-native ads and sponsorships on your own terms, keeping control.',
   },
-]
+];
 
 export const web3Pillars = [
   {
@@ -152,7 +147,58 @@ export const web3Pillars = [
     title: 'Portable Data & Ownership',
     description: 'Your data, your members, your content stay portable and yours.',
   },
-]
+];
+
+export const web3Networks = [
+  {
+    name: 'Ethereum',
+    icon: '/network-icons/ethereum.svg',
+    x: 50,
+    y: 11,
+  },
+  {
+    name: 'Base',
+    icon: '/network-icons/base.svg',
+    x: 77,
+    y: 22,
+  },
+  {
+    name: 'Optimism',
+    icon: '/network-icons/optimism.svg',
+    x: 88,
+    y: 45,
+  },
+  {
+    name: 'Monad',
+    icon: '/network-icons/monad.svg',
+    x: 76,
+    y: 74,
+  },
+  {
+    name: 'Polygon',
+    icon: '/network-icons/polygon.png',
+    x: 50,
+    y: 88,
+  },
+  {
+    name: 'Avalanche',
+    icon: '/network-icons/avalanche.svg',
+    x: 24,
+    y: 74,
+  },
+  {
+    name: 'Arbitrum',
+    icon: '/network-icons/arbitrum.ico',
+    x: 12,
+    y: 45,
+  },
+  {
+    name: 'Conflux',
+    icon: '/network-icons/conflux.ico',
+    x: 23,
+    y: 22,
+  },
+];
 
 export const testimonials = [
   {
@@ -179,7 +225,7 @@ export const testimonials = [
     org: 'Consensus Mesh',
     style: { backgroundColor: '#7b5fff', color: '#ffffff' },
   },
-]
+];
 
 export const steps = [
   {
@@ -200,7 +246,7 @@ export const steps = [
     description:
       'Sell memberships, gate premium content, run events, or collect tokens. Turn your community into a real, sustainable revenue stream.',
   },
-]
+];
 
 export const aiFeatures = [
   {
@@ -227,7 +273,7 @@ export const aiFeatures = [
     description:
       'Smart push and pull notifications that reach members at the right moment, never spam and always relevant.',
   },
-]
+];
 
 export const stats = [
   { value: '10k+', label: 'Community members and growing' },
@@ -235,7 +281,7 @@ export const stats = [
   { value: '$2M+', label: 'Revenue generated for creators' },
   { value: '170', label: 'Active investor leads in pipeline' },
   { value: '96%', label: 'Member retention rate' },
-]
+];
 
 export const ownershipCards = [
   {
@@ -253,8 +299,7 @@ export const ownershipCards = [
   {
     icon: '🛡️',
     title: 'Content Control',
-    description:
-      'Moderation tools, posting review, and community guidelines on your terms.',
+    description: 'Moderation tools, posting review, and community guidelines on your terms.',
   },
   {
     icon: '⚙️',
@@ -262,7 +307,7 @@ export const ownershipCards = [
     description:
       'Fine-grained roles, access control, and feature toggles across every part of your community.',
   },
-]
+];
 
 export const footerColumns = [
   {
@@ -295,11 +340,11 @@ export const footerColumns = [
       { label: 'Contact', href: '#cta' },
     ],
   },
-]
+];
 
 export const socialLinks = [
   { label: 'X', href: '#cta' },
   { label: 'in', href: '#cta' },
   { label: 'IG', href: '#cta' },
   { label: 'Chat', href: '#cta' },
-]
+];
