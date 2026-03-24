@@ -276,6 +276,25 @@ export const testimonials = [
   },
 ];
 
+export const communityShowcase = [
+  { name: 'Hashed', image: '/communities/Hashed.png' },
+  { name: '10KA', image: '/communities/10ka.jpg' },
+  { name: 'HackenAI', image: '/communities/HackenAI.png' },
+  { name: 'Conflux', image: '/communities/ConfluxBanner.png' },
+  { name: 'Cre8ivs Lead', image: '/communities/Cre8ivsLeadBanner.jpg' },
+  { name: 'Bellwether Arts', image: '/communities/bellwether-arts.png' },
+  { name: 'EDAO', image: '/communities/EDAO.png' },
+  { name: 'Andrometa', image: '/communities/Andrometa.jpg' },
+  { name: 'Awaken Fighter', image: '/communities/AwakenFighterLandscape.jpg' },
+  { name: 'Astra Nova', image: '/communities/AstraNova.png' },
+  { name: 'BanklessDAO', image: '/communities/BanklessDaoLogo.png' },
+  { name: 'Ascend The End', image: '/communities/AscendTheEnd.png' },
+  { name: 'Bellwether', image: '/communities/logo_bellwether.png' },
+  { name: 'New Order', image: '/communities/NewOrder.jpg' },
+  { name: 'Gamma', image: '/communities/GammaIO.webp' },
+  { name: 'BT', image: '/communities/BTLOGO.avif' },
+];
+
 export const steps = [
   {
     number: '01',

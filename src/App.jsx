@@ -3,6 +3,7 @@ import './App.css'
 import {
   aiFeatures,
   avatarBadges,
+  communityShowcase,
   featureCards,
   footerColumns,
   navLinks,
@@ -57,7 +58,10 @@ function App() {
         <FeatureSection featureCards={featureCards} />
         <MonetizeSection revenueCards={revenueCards} />
         <Web3Section web3Networks={web3Networks} web3Pillars={web3Pillars} />
-        <TestimonialsSection testimonials={testimonials} />
+        <TestimonialsSection
+          communityShowcase={communityShowcase}
+          testimonials={testimonials}
+        />
         <HowItWorksSection steps={steps} />
         <AiSection aiFeatures={aiFeatures} />
         <StatsSection stats={stats} />

@@ -1,7 +1,19 @@
 import { Reveal } from '../Reveal'
 import { SectionLabel } from '../SectionLabel'
 
-export function TestimonialsSection({ testimonials }) {
+function distributeRows(items, rowCount) {
+  const rows = Array.from({ length: rowCount }, () => [])
+
+  items.forEach((item, index) => {
+    rows[index % rowCount].push(item)
+  })
+
+  return rows
+}
+
+export function TestimonialsSection({ communityShowcase, testimonials }) {
+  const communityRows = distributeRows(communityShowcase, 3)
+
   return (
     <section className="testimonials-wrapper section-bleed" id="testimonials">
       <div className="container testimonials-inner">
@@ -13,6 +25,34 @@ export function TestimonialsSection({ testimonials }) {
           <p className="testimonials-sub">
             Trusted by creators, DAOs, and community builders across 40+ countries.
           </p>
+        </Reveal>
+
+        <Reveal className="community-carousel" delay={40}>
+          {communityRows.map((row, rowIndex) => (
+            <div className="community-row" key={`community-row-${rowIndex}`}>
+              <div
+                className={`community-track ${
+                  rowIndex % 2 === 1 ? 'is-reverse' : ''
+                }`}
+              >
+                {[...row, ...row].map((community, itemIndex) => (
+                  <article
+                    className="community-card"
+                    key={`${community.name}-${rowIndex}-${itemIndex}`}
+                  >
+                    <img
+                      className="community-card-image"
+                      src={community.image}
+                      alt={community.name}
+                      loading="lazy"
+                    />
+                    <div className="community-card-overlay"></div>
+                    <div className="community-card-title">{community.name}</div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          ))}
         </Reveal>
 
         <Reveal className="testimonials-grid" delay={80}>
