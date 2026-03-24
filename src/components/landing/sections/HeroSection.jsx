@@ -1,6 +1,10 @@
+import { useRef } from 'react'
+import { HeroBadgeCloud } from '../HeroBadgeCloud'
 import { Reveal } from '../Reveal'
 
 export function HeroSection({ avatarBadges, rotatingWord, tickerItems, trustItems }) {
+  const heroContentRef = useRef(null)
+
   return (
     <>
       <section className="hero section-bleed">
@@ -27,21 +31,9 @@ export function HeroSection({ avatarBadges, rotatingWord, tickerItems, trustItem
           </svg>
         </div>
 
-        <div className="hero-avatars" aria-hidden="true">
-          {avatarBadges.map((badge) => (
-            <div className={`avatar-badge ${badge.className}`} key={badge.name}>
-              <div className="av" style={badge.style}>
-                {badge.initials}
-              </div>
-              <div>
-                <div className="av-name">{badge.name}</div>
-                <div className="av-role">{badge.role}</div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <HeroBadgeCloud badges={avatarBadges} avoidRef={heroContentRef} />
 
-        <div className="container hero-content">
+        <div className="container hero-content" ref={heroContentRef}>
           <Reveal className="hero-eyebrow" delay={0}>
             <span className="hero-eyebrow-dot"></span>
             NOW IN OPEN BETA — JOIN TODAY
