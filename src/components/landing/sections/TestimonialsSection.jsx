@@ -37,11 +37,15 @@ export function TestimonialsSection({ communityShowcase, testimonials }) {
               >
                 {[...row, ...row].map((community, itemIndex) => (
                   <article
-                    className="community-card"
+                    className={`community-card ${
+                      community.fit === 'contain' ? 'is-contained' : ''
+                    }`}
                     key={`${community.name}-${rowIndex}-${itemIndex}`}
                   >
                     <img
-                      className="community-card-image"
+                      className={`community-card-image ${
+                        community.fit === 'contain' ? 'is-contained' : ''
+                      }`}
                       src={community.image}
                       alt={community.name}
                       loading="lazy"
