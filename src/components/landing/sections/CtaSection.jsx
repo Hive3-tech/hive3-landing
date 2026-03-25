@@ -1,5 +1,7 @@
 import { Reveal } from '../Reveal'
 
+const APP_LOGIN_URL = 'https://app.hive3.tech/login'
+
 export function CtaSection() {
   return (
     <section className="cta-section section-bleed" id="cta">
@@ -14,17 +16,16 @@ export function CtaSection() {
             Join thousands of creators and builders who chose ownership over
             algorithms.
           </p>
-          <form className="cta-form" onSubmit={(event) => event.preventDefault()}>
-            <input
-              type="email"
-              className="cta-input"
-              placeholder="Enter your email address"
-              aria-label="Email address"
-            />
-            <button type="submit" className="btn btn-hero">
+          <div className="cta-form">
+            <a
+              className="btn btn-hero"
+              href={APP_LOGIN_URL}
+              target="_blank"
+              rel="noreferrer"
+            >
               Get started <span aria-hidden="true">→</span>
-            </button>
-          </form>
+            </a>
+          </div>
           <p className="cta-note">
             Free to start. No credit card required. Cancel anytime.
           </p>

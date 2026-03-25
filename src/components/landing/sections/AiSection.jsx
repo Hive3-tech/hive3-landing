@@ -33,33 +33,30 @@ export function AiSection({ aiFeatures }) {
         <Reveal delay={100}>
           <div className="ai-visual-card">
             <div className="ai-visual-glow"></div>
-            <div className="ai-visual-label">AI MATCHING ENGINE</div>
-            <div className="ai-match-stack">
-              <div className="ai-match-card">
-                <div className="ai-match-avatar gold">SQ</div>
-                <div className="ai-match-copy">
-                  <strong>Stacy Q.</strong>
-                  <span>Looking for: Web3 investors</span>
+            <div className="ai-visual-label">HIVE MIND ANALYTICS</div>
+            <div className="ai-screen-frame">
+              <div className="ai-screen-flip">
+                <div className="ai-screen-face ai-screen-face-front">
+                  <img
+                    className="ai-screen-image"
+                    src="/screenshots/hivemind-analytics.png"
+                    alt="Hive Mind Analytics dashboard showing member growth, verification, and engagement trends."
+                    loading="lazy"
+                  />
                 </div>
-                <div className="ai-match-badge gold">98% match</div>
-              </div>
-
-              <div className="ai-match-arrow">↕</div>
-
-              <div className="ai-match-card connected">
-                <div className="ai-match-avatar blue">YM</div>
-                <div className="ai-match-copy">
-                  <strong>Yan Ma</strong>
-                  <span>Spartan Group — Seed investor</span>
+                <div className="ai-screen-face ai-screen-face-back">
+                  <img
+                    className="ai-screen-image is-heatmap"
+                    src="/screenshots/hivemind-analytics-full.png"
+                    alt="Hive Mind Analytics dashboard showing heatmap activity patterns and AI approval queue."
+                    loading="lazy"
+                  />
                 </div>
-                <div className="ai-match-badge blue">Connected</div>
               </div>
-
-              <div className="ai-insight-card">
-                <span>AI Insight:</span> Yan&apos;s portfolio aligns with
-                Hive3&apos;s community platform thesis. Warm intro via mutual
-                connection available.
-              </div>
+            </div>
+            <div className="ai-screen-caption">
+              AI-governed community intelligence with growth trends, churn risk, and
+              member verification at a glance.
             </div>
           </div>
         </Reveal>

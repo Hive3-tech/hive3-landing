@@ -64,15 +64,6 @@ export function TestimonialsSection({ communityShowcase, testimonials }) {
             <article className="testi-card" key={testimonial.name}>
               <div className="testi-stars">★★★★★</div>
               <p className="testi-text">&quot;{testimonial.quote}&quot;</p>
-              <div className="testi-author">
-                <div className="testi-av" style={testimonial.style}>
-                  {testimonial.initials}
-                </div>
-                <div>
-                  <div className="testi-name">{testimonial.name}</div>
-                  <div className="testi-org">{testimonial.org}</div>
-                </div>
-              </div>
             </article>
           ))}
         </Reveal>

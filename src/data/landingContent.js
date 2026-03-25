@@ -344,11 +344,11 @@ export const aiFeatures = [
 ];
 
 export const stats = [
-  { value: '10k+', label: 'Community members and growing' },
-  { value: '40+', label: 'Countries represented globally' },
-  { value: '$2M+', label: 'Revenue generated for creators' },
-  { value: '170', label: 'Active investor leads in pipeline' },
-  { value: '96%', label: 'Member retention rate' },
+  { value: '2M+', label: 'Members in onboarding communities' },
+  { value: '75+', label: 'Countries represented in early communities' },
+  { value: '∞', label: 'Earning potential for creators and communities' },
+  { value: '150+', label: 'Active partnerships in our pipeline' },
+  { value: '5', label: 'Named Top 5 Female Founded Tech Company by Innovation Week EU' },
 ];
 
 export const ownershipCards = [
@@ -411,8 +411,15 @@ export const footerColumns = [
 ];
 
 export const socialLinks = [
-  { label: 'X', href: '#cta' },
-  { label: 'in', href: '#cta' },
-  { label: 'IG', href: '#cta' },
-  { label: 'Chat', href: '#cta' },
+  { label: 'X', platform: 'x', href: 'https://x.com/hive3tech' },
+  {
+    label: 'LinkedIn',
+    platform: 'linkedin',
+    href: 'https://www.linkedin.com/company/hive3tech/',
+  },
+  {
+    label: 'Discord',
+    platform: 'discord',
+    href: 'https://discord.com/invite/MDaE5fT65U',
+  },
 ];

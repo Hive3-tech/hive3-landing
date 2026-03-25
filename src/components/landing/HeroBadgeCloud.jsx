@@ -1,20 +1,47 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 
-const BADGE_SLOTS = [
-  { x: 15, y: 22 },
-  { x: 85, y: 22 },
-  { x: 15, y: 72 },
-  { x: 85, y: 72 },
-  { x: 26, y: 31 },
-  { x: 74, y: 31 },
-  { x: 26, y: 83 },
-  { x: 74, y: 83 },
-  { x: 32, y: 20 },
-  { x: 68, y: 20 },
-  { x: 32, y: 63 },
-  { x: 68, y: 63 },
-  { x: 20, y: 41 },
-  { x: 80, y: 41 },
+const DESKTOP_BADGE_SLOTS = [
+  { x: 11, y: 16 },
+  { x: 89, y: 16 },
+  { x: 12, y: 78 },
+  { x: 88, y: 78 },
+  { x: 21, y: 25 },
+  { x: 79, y: 25 },
+  { x: 22, y: 86 },
+  { x: 78, y: 86 },
+  { x: 28, y: 12 },
+  { x: 72, y: 12 },
+  { x: 28, y: 68 },
+  { x: 72, y: 68 },
+  { x: 17, y: 38 },
+  { x: 83, y: 38 },
+]
+
+const LARGE_LAPTOP_BADGE_SLOTS = [
+  { x: 10, y: 18 },
+  { x: 25, y: 10 },
+  { x: 12, y: 80 },
+  { x: 25, y: 88 },
+  { x: 90, y: 18 },
+  { x: 75, y: 10 },
+  { x: 88, y: 80 },
+  { x: 75, y: 88 },
+]
+
+const LAPTOP_BADGE_SLOTS = [
+  { x: 10, y: 18 },
+  { x: 26, y: 10 },
+  { x: 13, y: 82 },
+  { x: 90, y: 18 },
+  { x: 74, y: 10 },
+  { x: 87, y: 82 },
+]
+
+const TABLET_BADGE_SLOTS = [
+  { x: 12, y: 18 },
+  { x: 28, y: 11 },
+  { x: 88, y: 18 },
+  { x: 72, y: 11 },
 ]
 
 function clamp(value, min, max) {
@@ -23,14 +50,46 @@ function clamp(value, min, max) {
 
 function getVisibleBadgeCount(viewportWidth) {
   if (viewportWidth <= 720) {
-    return 5
+    return 0
+  }
+
+  if (viewportWidth <= 840) {
+    return 4
   }
 
   if (viewportWidth <= 1080) {
-    return 9
+    return 4
   }
 
-  return BADGE_SLOTS.length
+  if (viewportWidth <= 1280) {
+    return 6
+  }
+
+  if (viewportWidth <= 1440) {
+    return 8
+  }
+
+  return DESKTOP_BADGE_SLOTS.length
+}
+
+function getBadgeSlots(viewportWidth) {
+  if (viewportWidth <= 720) {
+    return []
+  }
+
+  if (viewportWidth <= 1080) {
+    return TABLET_BADGE_SLOTS
+  }
+
+  if (viewportWidth <= 1280) {
+    return LAPTOP_BADGE_SLOTS
+  }
+
+  if (viewportWidth <= 1440) {
+    return LARGE_LAPTOP_BADGE_SLOTS
+  }
+
+  return DESKTOP_BADGE_SLOTS
 }
 
 function buildAvoidRect(containerRect, avoidElement) {
@@ -41,10 +100,10 @@ function buildAvoidRect(containerRect, avoidElement) {
   const avoidRect = avoidElement.getBoundingClientRect()
 
   return {
-    left: avoidRect.left - containerRect.left - 56,
-    right: avoidRect.right - containerRect.left + 56,
-    top: avoidRect.top - containerRect.top - 48,
-    bottom: avoidRect.bottom - containerRect.top + 48,
+    left: avoidRect.left - containerRect.left - 84,
+    right: avoidRect.right - containerRect.left + 84,
+    top: avoidRect.top - containerRect.top - 64,
+    bottom: avoidRect.bottom - containerRect.top + 64,
   }
 }
 
@@ -156,7 +215,7 @@ function mapEntitiesToPositions(entities) {
   }))
 }
 
-function createEntities(badges, badgeRefs, containerRect, avoidRect) {
+function createEntities(badges, badgeRefs, containerRect, avoidRect, slots) {
   const width = containerRect.width
   const height = containerRect.height
 
@@ -164,7 +223,7 @@ function createEntities(badges, badgeRefs, containerRect, avoidRect) {
     const badgeRect = badgeRefs.current[index]?.getBoundingClientRect()
     const badgeWidth = badgeRect?.width || 176
     const badgeHeight = badgeRect?.height || 44
-    const slot = BADGE_SLOTS[index % BADGE_SLOTS.length]
+    const slot = slots[index % slots.length]
     const halfWidth = badgeWidth / 2
     const halfHeight = badgeHeight / 2
     const anchorX = clamp(width * (slot.x / 100), halfWidth + 12, width - halfWidth - 12)
@@ -211,6 +270,7 @@ export function HeroBadgeCloud({ badges, avoidRef }) {
     typeof window === 'undefined' ? 1440 : window.innerWidth,
   )
   const [positions, setPositions] = useState([])
+  const badgeSlots = useMemo(() => getBadgeSlots(viewportWidth), [viewportWidth])
   const visibleBadges = useMemo(
     () => badges.slice(0, getVisibleBadgeCount(viewportWidth)),
     [badges, viewportWidth],
@@ -233,7 +293,7 @@ export function HeroBadgeCloud({ badges, avoidRef }) {
   useEffect(() => {
     const container = containerRef.current
 
-    if (!container || !visibleBadges.length) {
+    if (!container || !visibleBadges.length || !badgeSlots.length) {
       setPositions([])
       return undefined
     }
@@ -253,7 +313,13 @@ export function HeroBadgeCloud({ badges, avoidRef }) {
       const containerRect = containerRef.current.getBoundingClientRect()
       const avoidRect = buildAvoidRect(containerRect, avoidRef?.current)
 
-      entities = createEntities(visibleBadges, badgeRefs, containerRect, avoidRect)
+      entities = createEntities(
+        visibleBadges,
+        badgeRefs,
+        containerRect,
+        avoidRect,
+        badgeSlots,
+      )
       settleEntities(entities, containerRect.width, containerRect.height, avoidRect)
       setPositions(mapEntitiesToPositions(entities))
     }
@@ -370,7 +436,7 @@ export function HeroBadgeCloud({ badges, avoidRef }) {
       window.removeEventListener('pointermove', handlePointerMove)
       window.removeEventListener('mouseleave', clearPointer)
     }
-  }, [avoidRef, visibleBadges])
+  }, [avoidRef, badgeSlots, visibleBadges])
 
   return (
     <div className="hero-avatars" ref={containerRef} aria-hidden="true">

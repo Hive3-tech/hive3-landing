@@ -7,7 +7,9 @@ export function StatsSection({ stats }) {
         <Reveal className="stats-wrapper">
           {stats.map((stat) => (
             <div key={stat.label}>
-              <div className="stat-num">{stat.value}</div>
+              <div className={`stat-num ${stat.value.length > 8 ? 'is-long' : ''}`}>
+                {stat.value}
+              </div>
               <div className="stat-label">{stat.label}</div>
             </div>
           ))}

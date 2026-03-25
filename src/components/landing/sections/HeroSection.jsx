@@ -2,7 +2,15 @@ import { useRef } from 'react'
 import { HeroBadgeCloud } from '../HeroBadgeCloud'
 import { Reveal } from '../Reveal'
 
-export function HeroSection({ avatarBadges, rotatingWord, tickerItems, trustItems }) {
+const APP_LOGIN_URL = 'https://app.hive3.tech/login'
+
+export function HeroSection({
+  avatarBadges,
+  onOpenTrailer,
+  rotatingWord,
+  tickerItems,
+  trustItems,
+}) {
   const heroContentRef = useRef(null)
 
   return (
@@ -59,12 +67,17 @@ export function HeroSection({ avatarBadges, rotatingWord, tickerItems, trustItem
           </Reveal>
 
           <Reveal className="hero-ctas" delay={200}>
-            <a className="btn btn-hero" href="#cta">
+            <a
+              className="btn btn-hero"
+              href={APP_LOGIN_URL}
+              target="_blank"
+              rel="noreferrer"
+            >
               Start for free <span aria-hidden="true">→</span>
             </a>
-            <a className="btn btn-hero-ghost" href="#features">
-              Watch demo <span aria-hidden="true">▶</span>
-            </a>
+            <button type="button" className="btn btn-hero-ghost" onClick={onOpenTrailer}>
+              Watch trailer <span aria-hidden="true">▶</span>
+            </button>
           </Reveal>
         </div>
       </section>

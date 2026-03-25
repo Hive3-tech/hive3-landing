@@ -1,3 +1,5 @@
+const APP_LOGIN_URL = 'https://app.hive3.tech/login'
+
 export function SiteHeader({ navLinks, menuOpen, onCloseMenu, onToggleMenu }) {
   return (
     <header className="site-nav">
@@ -30,10 +32,22 @@ export function SiteHeader({ navLinks, menuOpen, onCloseMenu, onToggleMenu }) {
           </ul>
 
           <div className="nav-ctas">
-            <a className="btn btn-ghost" href="#cta" onClick={onCloseMenu}>
+            <a
+              className="btn btn-ghost"
+              href={APP_LOGIN_URL}
+              target="_blank"
+              rel="noreferrer"
+              onClick={onCloseMenu}
+            >
               Log in
             </a>
-            <a className="btn btn-primary" href="#cta" onClick={onCloseMenu}>
+            <a
+              className="btn btn-primary"
+              href={APP_LOGIN_URL}
+              target="_blank"
+              rel="noreferrer"
+              onClick={onCloseMenu}
+            >
               Get started <span aria-hidden="true">→</span>
             </a>
           </div>

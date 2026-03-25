@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import {
   aiFeatures,
@@ -21,6 +21,7 @@ import {
 } from './data/landingContent'
 import { SiteFooter } from './components/landing/SiteFooter'
 import { SiteHeader } from './components/landing/SiteHeader'
+import { TrailerModal } from './components/landing/TrailerModal'
 import { AiSection } from './components/landing/sections/AiSection'
 import { CtaSection } from './components/landing/sections/CtaSection'
 import { FeatureSection } from './components/landing/sections/FeatureSection'
@@ -35,9 +36,31 @@ import { useLandingPageEffects } from './hooks/useLandingPageEffects'
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [trailerOpen, setTrailerOpen] = useState(false)
   const activeWordIndex = useLandingPageEffects(rotatingWords.length)
 
   const closeMenu = () => setMenuOpen(false)
+
+  useEffect(() => {
+    if (!trailerOpen) {
+      document.body.style.overflow = ''
+      return undefined
+    }
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setTrailerOpen(false)
+      }
+    }
+
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [trailerOpen])
 
   return (
     <div className="page-shell" id="top">
@@ -51,6 +74,7 @@ function App() {
       <main>
         <HeroSection
           avatarBadges={avatarBadges}
+          onOpenTrailer={() => setTrailerOpen(true)}
           rotatingWord={rotatingWords[activeWordIndex]}
           tickerItems={tickerItems}
           trustItems={trustItems}
@@ -70,6 +94,7 @@ function App() {
       </main>
 
       <SiteFooter footerColumns={footerColumns} socialLinks={socialLinks} />
+      <TrailerModal isOpen={trailerOpen} onClose={() => setTrailerOpen(false)} />
     </div>
   )
 }
