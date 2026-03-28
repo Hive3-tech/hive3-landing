@@ -1,19 +1,120 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { Reveal } from '../Reveal'
 
 function ConstellationMap({ web3Networks }) {
+  const containerRef = useRef(null)
+  const nodeRefs = useRef([])
   const nodes = useMemo(
     () =>
       web3Networks.map((network, i) => ({
         ...network,
-        animDelay: -(i * 1.2),
-        animDuration: 7 + (i % 3) * 2,
+        animDelay: -(i * 1.15),
+        animDuration: 6.6 + (i % 4) * 1.1,
+        floatX: [10, -8, 9, -7, 0, 8, -10, 7][i % 8],
+        floatY: [-8, 7, 6, -9, 10, -7, 5, 9][i % 8],
       })),
     [web3Networks]
   )
 
+  useEffect(() => {
+    const container = containerRef.current
+
+    if (!container || !nodes.length) {
+      return undefined
+    }
+
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches
+
+    if (prefersReducedMotion) {
+      nodeRefs.current.forEach((node) => {
+        node?.style.setProperty('--repel-x', '0px')
+        node?.style.setProperty('--repel-y', '0px')
+      })
+      return undefined
+    }
+
+    const pointer = { active: false, x: 0, y: 0 }
+    const motion = nodes.map(() => ({ x: 0, y: 0, vx: 0, vy: 0 }))
+    let frameId = 0
+    let lastTimestamp = performance.now()
+
+    const animate = (timestamp) => {
+      const rect = container.getBoundingClientRect()
+      const elapsed = Math.min((timestamp - lastTimestamp) / 16.6667, 1.6)
+
+      lastTimestamp = timestamp
+
+      const influenceRadius = Math.max(140, Math.min(rect.width * 0.24, 220))
+      const maxOffset = rect.width < 900 ? 18 : 26
+
+      nodes.forEach((node, index) => {
+        const state = motion[index]
+        let targetX = 0
+        let targetY = 0
+
+        if (pointer.active) {
+          const anchorX = rect.width * (node.x / 100)
+          const anchorY = rect.height * (node.y / 100)
+          const dx = anchorX - pointer.x
+          const dy = anchorY - pointer.y
+          const distance = Math.hypot(dx, dy) || 1
+
+          if (distance < influenceRadius) {
+            const force = ((influenceRadius - distance) / influenceRadius) ** 2
+
+            targetX = (dx / distance) * force * maxOffset
+            targetY = (dy / distance) * force * maxOffset
+          }
+        }
+
+        state.vx += (targetX - state.x) * 0.15 * elapsed
+        state.vy += (targetY - state.y) * 0.15 * elapsed
+        state.vx *= 0.78
+        state.vy *= 0.78
+        state.x += state.vx * elapsed
+        state.y += state.vy * elapsed
+
+        nodeRefs.current[index]?.style.setProperty('--repel-x', `${state.x.toFixed(2)}px`)
+        nodeRefs.current[index]?.style.setProperty('--repel-y', `${state.y.toFixed(2)}px`)
+      })
+
+      frameId = window.requestAnimationFrame(animate)
+    }
+
+    const updatePointer = (event) => {
+      if (event.pointerType && event.pointerType !== 'mouse') {
+        pointer.active = false
+        return
+      }
+
+      const rect = container.getBoundingClientRect()
+      const insideX = event.clientX >= rect.left && event.clientX <= rect.right
+      const insideY = event.clientY >= rect.top && event.clientY <= rect.bottom
+
+      pointer.active = insideX && insideY
+      pointer.x = event.clientX - rect.left
+      pointer.y = event.clientY - rect.top
+    }
+
+    const clearPointer = () => {
+      pointer.active = false
+    }
+
+    container.addEventListener('pointermove', updatePointer, { passive: true })
+    container.addEventListener('pointerleave', clearPointer)
+    frameId = window.requestAnimationFrame(animate)
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      container.removeEventListener('pointermove', updatePointer)
+      container.removeEventListener('pointerleave', clearPointer)
+    }
+  }, [nodes])
+
   return (
-    <div className="constellation-container">
+    <div className="constellation-container" ref={containerRef}>
       <svg
         className="constellation-svg"
         viewBox="0 0 100 100"
@@ -40,13 +141,13 @@ function ConstellationMap({ web3Networks }) {
         {nodes.map((node) => (
           <line
             key={`line-${node.name}`}
+            className="constellation-spoke"
             x1="50"
             y1="50"
             x2={node.x}
             y2={node.y}
-            stroke="rgba(245, 200, 66, 0.15)"
-            strokeWidth="1"
             vectorEffect="non-scaling-stroke"
+            style={{ animationDelay: `${Math.abs(node.animDelay) * 0.35}s` }}
           />
         ))}
 
@@ -56,13 +157,13 @@ function ConstellationMap({ web3Networks }) {
           return (
             <line
               key={`ring-${node.name}`}
+              className="constellation-ring-link"
               x1={node.x}
               y1={node.y}
               x2={next.x}
               y2={next.y}
-              stroke="rgba(79, 142, 255, 0.08)"
-              strokeWidth="0.5"
               vectorEffect="non-scaling-stroke"
+              style={{ animationDelay: `${i * 0.4}s` }}
             />
           )
         })}
@@ -70,6 +171,8 @@ function ConstellationMap({ web3Networks }) {
 
       {/* Center Hive3 Hub */}
       <div className="constellation-center">
+        <div className="constellation-center-orbit constellation-center-orbit-outer" />
+        <div className="constellation-center-orbit constellation-center-orbit-inner" />
         <div className="constellation-center-ring" />
         <div className="constellation-center-hub">
           <img src="/hive3-sign.png" alt="Hive3" className="constellation-center-logo" />
@@ -77,15 +180,20 @@ function ConstellationMap({ web3Networks }) {
       </div>
 
       {/* Network Nodes */}
-      {nodes.map((node) => (
+      {nodes.map((node, index) => (
         <div
           key={node.name}
           className="constellation-node"
+          ref={(element) => {
+            nodeRefs.current[index] = element
+          }}
           style={{
             left: `${node.x}%`,
             top: `${node.y}%`,
-            animationDelay: `${node.animDelay}s`,
-            animationDuration: `${node.animDuration}s`,
+            '--node-delay': `${node.animDelay}s`,
+            '--float-duration': `${node.animDuration}s`,
+            '--float-x': `${node.floatX}px`,
+            '--float-y': `${node.floatY}px`,
           }}
         >
           <div className="constellation-node-glow" />
