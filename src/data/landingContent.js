@@ -15,7 +15,6 @@ export const avatarBadges = [
     role: 'Payments Infrastructure',
     image: '/circle-logo.svg',
     imageFit: 'contain',
-    avatarVariant: 'wide',
   },
   {
     initials: 'UD',
