@@ -315,12 +315,32 @@
   background: rgba(255, 255, 255, 0.08);
 }
 
+.av.has-photo.is-logo {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.av.has-photo.is-wide {
+  width: 52px;
+  flex: 0 0 52px;
+  border-radius: 12px;
+  padding: 0 6px;
+}
+
 .av-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
   display: block;
+}
+
+.av-image.is-contain {
+  object-fit: contain;
+  padding: 4px;
+}
+
+.av-image.is-wide {
+  padding: 0;
 }
 
 .av-name {

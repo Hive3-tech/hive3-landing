@@ -460,11 +460,15 @@ export function HeroBadgeCloud({ badges, avoidRef }) {
             }
           >
             <div
-              className={`av${badge.image ? ' has-photo' : ''}`}
+              className={`av${badge.image ? ' has-photo' : ''}${badge.imageFit === 'contain' ? ' is-logo' : ''}${badge.avatarVariant === 'wide' ? ' is-wide' : ''}`}
               style={badge.image ? undefined : badge.style}
             >
               {badge.image ? (
-                <img className="av-image" src={badge.image} alt="" />
+                <img
+                  className={`av-image${badge.imageFit === 'contain' ? ' is-contain' : ''}${badge.avatarVariant === 'wide' ? ' is-wide' : ''}`}
+                  src={badge.image}
+                  alt=""
+                />
               ) : (
                 badge.initials
               )}

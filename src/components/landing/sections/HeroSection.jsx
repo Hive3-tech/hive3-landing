@@ -1,16 +1,11 @@
-import { useRef } from 'react'
-import { HeroBadgeCloud } from '../HeroBadgeCloud'
-import { Reveal } from '../Reveal'
+import { useRef } from 'react';
+import { HeroBadgeCloud } from '../HeroBadgeCloud';
+import { Reveal } from '../Reveal';
 
-const APP_LOGIN_URL = 'https://app.hive3.tech/login'
+const APP_LOGIN_URL = 'https://app.hive3.tech/login';
 
-export function HeroSection({
-  avatarBadges,
-  onOpenTrailer,
-  rotatingWord,
-  tickerItems,
-}) {
-  const heroContentRef = useRef(null)
+export function HeroSection({ avatarBadges, onOpenTrailer, rotatingWord, tickerItems }) {
+  const heroContentRef = useRef(null);
 
   return (
     <>
@@ -18,14 +13,7 @@ export function HeroSection({
         <div className="hero-hex-bg" aria-hidden="true">
           <svg className="hex-grid" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <pattern
-                id="hexPat"
-                x="0"
-                y="0"
-                width="80"
-                height="92"
-                patternUnits="userSpaceOnUse"
-              >
+              <pattern id="hexPat" x="0" y="0" width="80" height="92" patternUnits="userSpaceOnUse">
                 <polygon
                   points="40,4 76,24 76,68 40,88 4,68 4,24"
                   fill="none"
@@ -61,17 +49,12 @@ export function HeroSection({
           </Reveal>
 
           <Reveal as="p" className="hero-sub" delay={140}>
-            Build, own, and monetize your community with real Web3 ownership. No
-            algorithms, no intermediaries, no limits.
+            Bulid, own, and monetize your community “Hive” with real web3 ownership. No Algorithms,
+            no intermediaries, no limits.
           </Reveal>
 
           <Reveal className="hero-ctas" delay={200}>
-            <a
-              className="btn btn-hero"
-              href={APP_LOGIN_URL}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a className="btn btn-hero" href={APP_LOGIN_URL} target="_blank" rel="noreferrer">
               Start for free <span aria-hidden="true">→</span>
             </a>
             <button type="button" className="btn btn-hero-ghost" onClick={onOpenTrailer}>
@@ -124,5 +107,5 @@ export function HeroSection({
         </div>
       </section>
     </>
-  )
+  );
 }
