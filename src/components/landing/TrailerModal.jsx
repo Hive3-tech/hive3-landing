@@ -23,7 +23,7 @@ export function TrailerModal({ isOpen, onClose }) {
 
         <video
           className="trailer-video"
-          src="/hive 3 clip_2_with_endcard.mov"
+          src="/Hive3Video.mp4"
           controls
           autoPlay
           playsInline
