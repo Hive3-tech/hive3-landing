@@ -15,7 +15,6 @@ import {
   steps,
   testimonials,
   tickerItems,
-  trustItems,
   web3Networks,
   web3Pillars,
 } from './data/landingContent'
@@ -77,7 +76,6 @@ function App() {
           onOpenTrailer={() => setTrailerOpen(true)}
           rotatingWord={rotatingWords[activeWordIndex]}
           tickerItems={tickerItems}
-          trustItems={trustItems}
         />
         <FeatureSection featureCards={featureCards} />
         <MonetizeSection revenueCards={revenueCards} />

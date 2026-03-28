@@ -9,7 +9,6 @@ export function HeroSection({
   onOpenTrailer,
   rotatingWord,
   tickerItems,
-  trustItems,
 }) {
   const heroContentRef = useRef(null)
 
@@ -94,15 +93,34 @@ export function HeroSection({
       </div>
 
       <section className="trust-strip section-bleed" aria-label="Trust indicators">
-        <div className="container trust-grid">
-          {trustItems.map((item) => (
-            <div className="trust-item" key={item.text}>
-              <span className="trust-item-icon" aria-hidden="true">
-                {item.icon}
-              </span>
-              {item.text}
+        <div className="container trust-promo-wrap">
+          <Reveal>
+            <div className="trust-promo">
+              <a
+                className="trust-promo-visual"
+                href="https://www.cryptoknights.tv/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  className="trust-promo-image"
+                  src="/ck.png"
+                  alt="CryptoKnights promotional banner"
+                />
+              </a>
+
+              <a
+                className="trust-promo-copy"
+                href="https://www.cryptoknights.tv/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Hive 3 official season two disruptor
+                <span className="trust-promo-copy-separator">-</span>
+                <span>Amazon Prime Video</span>
+              </a>
             </div>
-          ))}
+          </Reveal>
         </div>
       </section>
     </>
