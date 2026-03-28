@@ -1,47 +1,45 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 
 const DESKTOP_BADGE_SLOTS = [
-  { x: 11, y: 16 },
-  { x: 89, y: 16 },
-  { x: 12, y: 78 },
-  { x: 88, y: 78 },
-  { x: 21, y: 25 },
-  { x: 79, y: 25 },
-  { x: 22, y: 86 },
-  { x: 78, y: 86 },
-  { x: 28, y: 12 },
-  { x: 72, y: 12 },
-  { x: 28, y: 68 },
-  { x: 72, y: 68 },
-  { x: 17, y: 38 },
-  { x: 83, y: 38 },
+  { x: 8, y: 15 },
+  { x: 24, y: 12 },
+  { x: 40, y: 14 },
+  { x: 60, y: 14 },
+  { x: 76, y: 12 },
+  { x: 92, y: 15 },
+  { x: 8, y: 86 },
+  { x: 24, y: 89 },
+  { x: 40, y: 87 },
+  { x: 60, y: 87 },
+  { x: 76, y: 89 },
+  { x: 92, y: 86 },
 ]
 
 const LARGE_LAPTOP_BADGE_SLOTS = [
-  { x: 10, y: 18 },
-  { x: 25, y: 10 },
-  { x: 12, y: 80 },
-  { x: 25, y: 88 },
-  { x: 90, y: 18 },
-  { x: 75, y: 10 },
-  { x: 88, y: 80 },
-  { x: 75, y: 88 },
+  { x: 10, y: 16 },
+  { x: 30, y: 12 },
+  { x: 70, y: 12 },
+  { x: 90, y: 16 },
+  { x: 10, y: 86 },
+  { x: 30, y: 90 },
+  { x: 70, y: 90 },
+  { x: 90, y: 86 },
 ]
 
 const LAPTOP_BADGE_SLOTS = [
-  { x: 10, y: 18 },
-  { x: 26, y: 10 },
-  { x: 13, y: 82 },
-  { x: 90, y: 18 },
-  { x: 74, y: 10 },
-  { x: 87, y: 82 },
+  { x: 12, y: 18 },
+  { x: 50, y: 14 },
+  { x: 88, y: 18 },
+  { x: 12, y: 86 },
+  { x: 50, y: 90 },
+  { x: 88, y: 86 },
 ]
 
 const TABLET_BADGE_SLOTS = [
-  { x: 12, y: 18 },
-  { x: 28, y: 11 },
-  { x: 88, y: 18 },
-  { x: 72, y: 11 },
+  { x: 16, y: 22 },
+  { x: 84, y: 22 },
+  { x: 18, y: 84 },
+  { x: 82, y: 84 },
 ]
 
 function clamp(value, min, max) {
@@ -69,7 +67,7 @@ function getVisibleBadgeCount(viewportWidth) {
     return 8
   }
 
-  return DESKTOP_BADGE_SLOTS.length
+  return 12
 }
 
 function getBadgeSlots(viewportWidth) {
@@ -100,10 +98,10 @@ function buildAvoidRect(containerRect, avoidElement) {
   const avoidRect = avoidElement.getBoundingClientRect()
 
   return {
-    left: avoidRect.left - containerRect.left - 84,
-    right: avoidRect.right - containerRect.left + 84,
-    top: avoidRect.top - containerRect.top - 64,
-    bottom: avoidRect.bottom - containerRect.top + 64,
+    left: avoidRect.left - containerRect.left - 140,
+    right: avoidRect.right - containerRect.left + 140,
+    top: avoidRect.top - containerRect.top - 120,
+    bottom: avoidRect.bottom - containerRect.top + 120,
   }
 }
 
@@ -251,7 +249,7 @@ function createEntities(badges, badgeRefs, containerRect, avoidRect, slots) {
 }
 
 function settleEntities(entities, width, height, avoidRect) {
-  for (let iteration = 0; iteration < 36; iteration += 1) {
+  for (let iteration = 0; iteration < 60; iteration += 1) {
     resolveCollisions(entities)
 
     entities.forEach((entity) => {
@@ -298,12 +296,8 @@ export function HeroBadgeCloud({ badges, avoidRef }) {
       return undefined
     }
 
-    const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
-    ).matches
     let stopped = false
     let entities = []
-    let lastTimestamp = performance.now()
 
     const initialize = () => {
       if (stopped || !containerRef.current) {
@@ -324,86 +318,6 @@ export function HeroBadgeCloud({ badges, avoidRef }) {
       setPositions(mapEntitiesToPositions(entities))
     }
 
-    const animate = (timestamp) => {
-      if (stopped || !containerRef.current) {
-        return
-      }
-
-      const containerRect = containerRef.current.getBoundingClientRect()
-      const avoidRect = buildAvoidRect(containerRect, avoidRef?.current)
-      const elapsed = Math.min((timestamp - lastTimestamp) / 16.6667, 1.6)
-
-      lastTimestamp = timestamp
-
-      entities.forEach((entity) => {
-        const pullX = entity.anchorX - entity.x
-        const pullY = entity.anchorY - entity.y
-        const driftAngle = timestamp * 0.00055 + entity.phase
-
-        entity.vx += (pullX * 0.018 + Math.cos(driftAngle) * 0.18) * elapsed
-        entity.vy += (pullY * 0.018 + Math.sin(driftAngle * 1.12) * 0.14) * elapsed
-
-        if (pointerRef.current.active) {
-          const dx = entity.x - pointerRef.current.x
-          const dy = entity.y - pointerRef.current.y
-          const distance = Math.hypot(dx, dy) || 1
-          const influenceRadius = Math.max(entity.width, 180)
-
-          if (distance < influenceRadius) {
-            const force = ((influenceRadius - distance) / influenceRadius) ** 2 * 2.4 * elapsed
-
-            entity.vx += (dx / distance) * force
-            entity.vy += (dy / distance) * force
-          }
-        }
-
-        entity.vx *= 0.9
-        entity.vy *= 0.9
-        entity.x += entity.vx
-        entity.y += entity.vy
-      })
-
-      for (let iteration = 0; iteration < 3; iteration += 1) {
-        resolveCollisions(entities)
-
-        entities.forEach((entity) => {
-          resolveAvoidance(entity, avoidRect)
-          resolveBounds(entity, containerRect.width, containerRect.height)
-        })
-      }
-
-      setPositions(mapEntitiesToPositions(entities))
-      animationFrameRef.current = window.requestAnimationFrame(animate)
-    }
-
-    const handlePointerMove = (event) => {
-      if (event.pointerType && event.pointerType !== 'mouse') {
-        pointerRef.current.active = false
-        return
-      }
-
-      const containerRect = containerRef.current?.getBoundingClientRect()
-
-      if (!containerRect) {
-        return
-      }
-
-      const insideX =
-        event.clientX >= containerRect.left && event.clientX <= containerRect.right
-      const insideY =
-        event.clientY >= containerRect.top && event.clientY <= containerRect.bottom
-
-      pointerRef.current = {
-        active: insideX && insideY,
-        x: event.clientX - containerRect.left,
-        y: event.clientY - containerRect.top,
-      }
-    }
-
-    const clearPointer = () => {
-      pointerRef.current.active = false
-    }
-
     const resizeObserver = new ResizeObserver(() => {
       initialize()
     })
@@ -414,15 +328,8 @@ export function HeroBadgeCloud({ badges, avoidRef }) {
       resizeObserver.observe(avoidRef.current)
     }
 
-    window.addEventListener('pointermove', handlePointerMove, { passive: true })
-    window.addEventListener('mouseleave', clearPointer)
-
     const initialFrame = window.requestAnimationFrame(() => {
       initialize()
-
-      if (!prefersReducedMotion) {
-        animationFrameRef.current = window.requestAnimationFrame(animate)
-      }
     })
 
     const delayedMeasureId = window.setTimeout(initialize, 220)
@@ -430,11 +337,8 @@ export function HeroBadgeCloud({ badges, avoidRef }) {
     return () => {
       stopped = true
       window.cancelAnimationFrame(initialFrame)
-      window.cancelAnimationFrame(animationFrameRef.current)
       window.clearTimeout(delayedMeasureId)
       resizeObserver.disconnect()
-      window.removeEventListener('pointermove', handlePointerMove)
-      window.removeEventListener('mouseleave', clearPointer)
     }
   }, [avoidRef, badgeSlots, visibleBadges])
 
@@ -445,7 +349,7 @@ export function HeroBadgeCloud({ badges, avoidRef }) {
 
         return (
           <div
-            className="hero-avatar-badge"
+            className={`hero-avatar-badge${badge.noWrapName ? ' is-wide-label' : ''}`}
             key={badge.name}
             ref={(element) => {
               badgeRefs.current[index] = element
@@ -474,7 +378,7 @@ export function HeroBadgeCloud({ badges, avoidRef }) {
               )}
             </div>
             <div>
-              <div className="av-name">{badge.name}</div>
+              <div className={`av-name${badge.noWrapName ? ' is-nowrap' : ''}`}>{badge.name}</div>
               <div className="av-role">{badge.role}</div>
             </div>
           </div>

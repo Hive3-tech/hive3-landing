@@ -269,6 +269,7 @@
   overflow: hidden;
   user-select: none;
   pointer-events: none;
+  inset: 84px 0 28px;
 }
 
 .hex-grid {
@@ -295,6 +296,11 @@
   will-change: transform;
   opacity: 0;
   transition: opacity 160ms ease;
+  max-width: 228px;
+}
+
+.hero-avatar-badge.is-wide-label {
+  max-width: 272px;
 }
 
 .av {
@@ -347,6 +353,10 @@
   font-size: 12px;
   font-weight: 500;
   color: var(--white);
+}
+
+.av-name.is-nowrap {
+  white-space: nowrap;
 }
 
 .av-role {

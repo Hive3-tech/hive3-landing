@@ -13,7 +13,7 @@ export const avatarBadges = [
     initials: 'C',
     name: 'Circle',
     role: 'Payments Infrastructure',
-    image: '/communities/circle-logo.png',
+    image: '/circle-logo.svg',
     imageFit: 'contain',
     avatarVariant: 'wide',
   },
@@ -29,6 +29,7 @@ export const avatarBadges = [
     name: 'Unstoppable Women of Web3',
     role: 'Community Network',
     style: { backgroundColor: '#4bc8ff', color: '#081018' },
+    noWrapName: true,
   },
   {
     initials: 'CF',
