@@ -1,5 +1,5 @@
-import { Reveal } from '../Reveal'
-import { SectionLabel } from '../SectionLabel'
+import { Reveal } from '../Reveal';
+import { SectionLabel } from '../SectionLabel';
 
 export function AiSection({ aiFeatures }) {
   return (
@@ -11,12 +11,12 @@ export function AiSection({ aiFeatures }) {
             Harness AI to <em>Grow Faster</em>
           </h2>
           <p className="section-sub section-sub-spaced">
-            Intelligent tools that help you attract the right members, create
-            better content, and grow your community on autopilot.
+            Intelligent tools that help you attract the right members, create better content,
+            sell-out events, minimize churn, and scale globally.
           </p>
 
           <div className="ai-features">
-            {aiFeatures.map((feature) => (
+            {aiFeatures.map(feature => (
               <article className="ai-feature" key={feature.title}>
                 <div className="ai-feature-icon" aria-hidden="true">
                   {feature.icon}
@@ -55,12 +55,12 @@ export function AiSection({ aiFeatures }) {
               </div>
             </div>
             <div className="ai-screen-caption">
-              AI-governed community intelligence with growth trends, churn risk, and
-              member verification at a glance.
+              AI-governed community intelligence with growth trends, churn risk, and member
+              verification at a glance.
             </div>
           </div>
         </Reveal>
       </div>
     </section>
-  )
+  );
 }

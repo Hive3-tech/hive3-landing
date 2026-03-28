@@ -300,7 +300,7 @@ export const steps = [
     number: '01',
     title: 'Build',
     description:
-      'Customize your community in a few clicks. Set up your branding, token requirements, and membership tiers. Invite your audience with one link.',
+      'Customize your community “Hive” in a few clicks. Set up your branding, virtual space, and membership tiers. Invite your community and go!',
   },
   {
     number: '02',
@@ -327,7 +327,7 @@ export const aiFeatures = [
     icon: '🧲',
     title: 'Smart Matchmaking',
     description:
-      'AI-driven recommendations connect members with the right people, content, and opportunities inside your community.',
+      'AI-driven recommendations connect members with the right people, content, courses, events, and opportunities within your community.',
   },
   {
     icon: '📈',
@@ -356,7 +356,7 @@ export const ownershipCards = [
     icon: '🎨',
     title: 'Full Branding',
     description:
-      'Custom domain, colors, logo, and welcome experience. Your platform, your identity.',
+      'Custom Hive with your brand’s colors, logos, virtual space, and experience. Your platform, your identity.',
   },
   {
     icon: '🗄️',

@@ -1,18 +1,18 @@
-import { Reveal } from '../Reveal'
-import { SectionLabel } from '../SectionLabel'
+import { Reveal } from '../Reveal';
+import { SectionLabel } from '../SectionLabel';
 
 function distributeRows(items, rowCount) {
-  const rows = Array.from({ length: rowCount }, () => [])
+  const rows = Array.from({ length: rowCount }, () => []);
 
   items.forEach((item, index) => {
-    rows[index % rowCount].push(item)
-  })
+    rows[index % rowCount].push(item);
+  });
 
-  return rows
+  return rows;
 }
 
 export function TestimonialsSection({ communityShowcase, testimonials }) {
-  const communityRows = distributeRows(communityShowcase, 3)
+  const communityRows = distributeRows(communityShowcase, 3);
 
   return (
     <section className="testimonials-wrapper section-bleed" id="testimonials">
@@ -23,18 +23,14 @@ export function TestimonialsSection({ communityShowcase, testimonials }) {
             <h2 className="section-title">You&apos;re in Good Company</h2>
           </div>
           <p className="testimonials-sub">
-            Trusted by creators, DAOs, and community builders across 40+ countries.
+            Tested by users in 75+ countries. Gaming companies, web3 organizations and web2 brands.
           </p>
         </Reveal>
 
         <Reveal className="community-carousel" delay={40}>
           {communityRows.map((row, rowIndex) => (
             <div className="community-row" key={`community-row-${rowIndex}`}>
-              <div
-                className={`community-track ${
-                  rowIndex % 2 === 1 ? 'is-reverse' : ''
-                }`}
-              >
+              <div className={`community-track ${rowIndex % 2 === 1 ? 'is-reverse' : ''}`}>
                 {[...row, ...row].map((community, itemIndex) => (
                   <article
                     className={`community-card ${
@@ -60,7 +56,7 @@ export function TestimonialsSection({ communityShowcase, testimonials }) {
         </Reveal>
 
         <Reveal className="testimonials-grid" delay={80}>
-          {testimonials.map((testimonial) => (
+          {testimonials.map(testimonial => (
             <article className="testi-card" key={testimonial.name}>
               <div className="testi-stars">★★★★★</div>
               <p className="testi-text">&quot;{testimonial.quote}&quot;</p>
@@ -69,5 +65,5 @@ export function TestimonialsSection({ communityShowcase, testimonials }) {
         </Reveal>
       </div>
     </section>
-  )
+  );
 }

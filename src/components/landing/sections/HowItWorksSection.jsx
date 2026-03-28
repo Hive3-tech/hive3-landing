@@ -1,5 +1,5 @@
-import { Reveal } from '../Reveal'
-import { SectionLabel } from '../SectionLabel'
+import { Reveal } from '../Reveal';
+import { SectionLabel } from '../SectionLabel';
 
 export function HowItWorksSection({ steps }) {
   return (
@@ -10,14 +10,13 @@ export function HowItWorksSection({ steps }) {
           <h2 className="section-title">
             Go Live in <em>3 Simple Steps</em>
           </h2>
-          <p className="section-sub centered-copy">
-            No technical skills required. Launch your community in minutes, not
-            months.
+          <p className="section-sub centered-copy how-it-works-sub">
+            No technical skills required. Launch your community in minutes, not months.
           </p>
         </Reveal>
 
         <Reveal className="steps-grid" delay={80}>
-          {steps.map((step) => (
+          {steps.map(step => (
             <article className="step-card" key={step.number}>
               <div className="step-number">{step.number}</div>
               <h3 className="step-title">{step.title}</h3>
@@ -27,5 +26,5 @@ export function HowItWorksSection({ steps }) {
         </Reveal>
       </div>
     </section>
-  )
+  );
 }
