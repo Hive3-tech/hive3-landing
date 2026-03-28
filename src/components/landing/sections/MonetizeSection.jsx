@@ -1,5 +1,5 @@
-import { Reveal } from '../Reveal'
-import { SectionLabel } from '../SectionLabel'
+import { Reveal } from '../Reveal';
+import { SectionLabel } from '../SectionLabel';
 
 export function MonetizeSection({ revenueCards }) {
   return (
@@ -12,8 +12,8 @@ export function MonetizeSection({ revenueCards }) {
               Turn Your Community Into a <em>Revenue Machine</em>
             </h2>
             <p className="section-sub section-sub-spaced">
-              Sell memberships, gate premium content, run ads, or collect tokens.
-              Multiple revenue streams, zero intermediaries.
+              Sell memberships, premium content, events, courses, content, and collect rewards.
+              Multiple revenue streams, onfrastructure, and community.
             </p>
             <a className="btn btn-hero" href="#cta">
               Start earning <span aria-hidden="true">→</span>
@@ -21,7 +21,7 @@ export function MonetizeSection({ revenueCards }) {
           </div>
 
           <div className="monetize-cards">
-            {revenueCards.map((card) => (
+            {revenueCards.map(card => (
               <article className="mono-card" key={card.title}>
                 <span className="mono-card-icon" aria-hidden="true">
                   {card.icon}
@@ -34,5 +34,5 @@ export function MonetizeSection({ revenueCards }) {
         </Reveal>
       </div>
     </section>
-  )
+  );
 }

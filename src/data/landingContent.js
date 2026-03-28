@@ -156,12 +156,13 @@ export const revenueCards = [
   {
     icon: '🎟️',
     title: 'Memberships',
-    description: 'Sell recurring memberships and create a sustainable income from your community.',
+    description:
+      'Offer recurring memberships and subscriptions via integrated fiat and crypto payment rails.',
   },
   {
     icon: '🔐',
-    title: 'Token-Gated Content',
-    description: 'Gate premium content by NFT ownership, token holdings, or subscription tier.',
+    title: 'Token-Gating',
+    description: 'Gate premium content, events, courses, and access. Web3 power, Web2 easy.',
   },
   {
     icon: '👑',
@@ -171,7 +172,8 @@ export const revenueCards = [
   {
     icon: '📊',
     title: 'Ads & Sponsorships',
-    description: 'Run community-native ads and sponsorships on your own terms, keeping control.',
+    description:
+      'Your community. Your rules. Run community-native ads and sponsorships on your terms.',
   },
 ];
 
@@ -182,14 +184,15 @@ export const web3Pillars = [
     description: 'Members own their identity via wallet-based auth. No lock-in.',
   },
   {
-    icon: '🪙',
-    title: 'Token-Gated Access',
-    description: 'Control access with NFT or token requirements at any level.',
+    icon: '🚹',
+    title: 'Proof Of Humanity',
+    description: 'Control access with proof of humanity designations.',
   },
   {
     icon: '🗳️',
-    title: 'On-Chain Governance',
-    description: 'Let your members vote on decisions. True community-led growth.',
+    title: 'Centralized Communication',
+    description:
+      'Integrated communication apps,  in-community chat, and private community-only access  social feeds. ',
   },
   {
     icon: '🔗',

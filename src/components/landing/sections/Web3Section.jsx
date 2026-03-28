@@ -1,9 +1,9 @@
-import { useEffect, useMemo, useRef } from 'react'
-import { Reveal } from '../Reveal'
+import { useEffect, useMemo, useRef } from 'react';
+import { Reveal } from '../Reveal';
 
 function ConstellationMap({ web3Networks }) {
-  const containerRef = useRef(null)
-  const nodeRefs = useRef([])
+  const containerRef = useRef(null);
+  const nodeRefs = useRef([]);
   const nodes = useMemo(
     () =>
       web3Networks.map((network, i) => ({
@@ -14,104 +14,102 @@ function ConstellationMap({ web3Networks }) {
         floatY: [-8, 7, 6, -9, 10, -7, 5, 9][i % 8],
       })),
     [web3Networks]
-  )
+  );
 
   useEffect(() => {
-    const container = containerRef.current
+    const container = containerRef.current;
 
     if (!container || !nodes.length) {
-      return undefined
+      return undefined;
     }
 
-    const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
-    ).matches
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (prefersReducedMotion) {
-      nodeRefs.current.forEach((node) => {
-        node?.style.setProperty('--repel-x', '0px')
-        node?.style.setProperty('--repel-y', '0px')
-      })
-      return undefined
+      nodeRefs.current.forEach(node => {
+        node?.style.setProperty('--repel-x', '0px');
+        node?.style.setProperty('--repel-y', '0px');
+      });
+      return undefined;
     }
 
-    const pointer = { active: false, x: 0, y: 0 }
-    const motion = nodes.map(() => ({ x: 0, y: 0, vx: 0, vy: 0 }))
-    let frameId = 0
-    let lastTimestamp = performance.now()
+    const pointer = { active: false, x: 0, y: 0 };
+    const motion = nodes.map(() => ({ x: 0, y: 0, vx: 0, vy: 0 }));
+    let frameId = 0;
+    let lastTimestamp = performance.now();
 
-    const animate = (timestamp) => {
-      const rect = container.getBoundingClientRect()
-      const elapsed = Math.min((timestamp - lastTimestamp) / 16.6667, 1.6)
+    const animate = timestamp => {
+      const rect = container.getBoundingClientRect();
+      const elapsed = Math.min((timestamp - lastTimestamp) / 16.6667, 1.6);
 
-      lastTimestamp = timestamp
+      lastTimestamp = timestamp;
 
-      const influenceRadius = Math.max(140, Math.min(rect.width * 0.24, 220))
-      const maxOffset = rect.width < 900 ? 18 : 26
+      const influenceRadius = Math.max(140, Math.min(rect.width * 0.24, 220));
+      const maxOffset = rect.width < 900 ? 18 : 26;
 
       nodes.forEach((node, index) => {
-        const state = motion[index]
-        let targetX = 0
-        let targetY = 0
+        const state = motion[index];
+        let targetX = 0;
+        let targetY = 0;
 
         if (pointer.active) {
-          const anchorX = rect.width * (node.x / 100)
-          const anchorY = rect.height * (node.y / 100)
-          const dx = anchorX - pointer.x
-          const dy = anchorY - pointer.y
-          const distance = Math.hypot(dx, dy) || 1
+          const anchorX = rect.width * (node.x / 100);
+          const anchorY = rect.height * (node.y / 100);
+          const dx = anchorX - pointer.x;
+          const dy = anchorY - pointer.y;
+          const distance = Math.hypot(dx, dy) || 1;
 
           if (distance < influenceRadius) {
-            const force = ((influenceRadius - distance) / influenceRadius) ** 2
+            const force = ((influenceRadius - distance) / influenceRadius) ** 2;
 
-            targetX = (dx / distance) * force * maxOffset
-            targetY = (dy / distance) * force * maxOffset
+            targetX = (dx / distance) * force * maxOffset;
+            targetY = (dy / distance) * force * maxOffset;
           }
         }
 
-        state.vx += (targetX - state.x) * 0.15 * elapsed
-        state.vy += (targetY - state.y) * 0.15 * elapsed
-        state.vx *= 0.78
-        state.vy *= 0.78
-        state.x += state.vx * elapsed
-        state.y += state.vy * elapsed
+        state.vx += (targetX - state.x) * 0.15 * elapsed;
+        state.vy += (targetY - state.y) * 0.15 * elapsed;
+        state.vx *= 0.78;
+        state.vy *= 0.78;
+        state.x += state.vx * elapsed;
+        state.y += state.vy * elapsed;
 
-        nodeRefs.current[index]?.style.setProperty('--repel-x', `${state.x.toFixed(2)}px`)
-        nodeRefs.current[index]?.style.setProperty('--repel-y', `${state.y.toFixed(2)}px`)
-      })
+        nodeRefs.current[index]?.style.setProperty('--repel-x', `${state.x.toFixed(2)}px`);
+        nodeRefs.current[index]?.style.setProperty('--repel-y', `${state.y.toFixed(2)}px`);
+      });
 
-      frameId = window.requestAnimationFrame(animate)
-    }
+      frameId = window.requestAnimationFrame(animate);
+    };
 
-    const updatePointer = (event) => {
+    const updatePointer = event => {
       if (event.pointerType && event.pointerType !== 'mouse') {
-        pointer.active = false
-        return
+        pointer.active = false;
+        return;
       }
 
-      const rect = container.getBoundingClientRect()
-      const insideX = event.clientX >= rect.left && event.clientX <= rect.right
-      const insideY = event.clientY >= rect.top && event.clientY <= rect.bottom
+      const rect = container.getBoundingClientRect();
+      const insideX = event.clientX >= rect.left && event.clientX <= rect.right;
+      const insideY = event.clientY >= rect.top && event.clientY <= rect.bottom;
 
-      pointer.active = insideX && insideY
-      pointer.x = event.clientX - rect.left
-      pointer.y = event.clientY - rect.top
-    }
+      pointer.active = insideX && insideY;
+      pointer.x = event.clientX - rect.left;
+      pointer.y = event.clientY - rect.top;
+    };
 
     const clearPointer = () => {
-      pointer.active = false
-    }
+      pointer.active = false;
+    };
 
-    container.addEventListener('pointermove', updatePointer, { passive: true })
-    container.addEventListener('pointerleave', clearPointer)
-    frameId = window.requestAnimationFrame(animate)
+    container.addEventListener('pointermove', updatePointer, { passive: true });
+    container.addEventListener('pointerleave', clearPointer);
+    frameId = window.requestAnimationFrame(animate);
 
     return () => {
-      window.cancelAnimationFrame(frameId)
-      container.removeEventListener('pointermove', updatePointer)
-      container.removeEventListener('pointerleave', clearPointer)
-    }
-  }, [nodes])
+      window.cancelAnimationFrame(frameId);
+      container.removeEventListener('pointermove', updatePointer);
+      container.removeEventListener('pointerleave', clearPointer);
+    };
+  }, [nodes]);
 
   return (
     <div className="constellation-container" ref={containerRef}>
@@ -138,7 +136,7 @@ function ConstellationMap({ web3Networks }) {
         />
 
         {/* Lines from center to each node */}
-        {nodes.map((node) => (
+        {nodes.map(node => (
           <line
             key={`line-${node.name}`}
             className="constellation-spoke"
@@ -153,7 +151,7 @@ function ConstellationMap({ web3Networks }) {
 
         {/* Ring connections between adjacent nodes */}
         {nodes.map((node, i) => {
-          const next = nodes[(i + 1) % nodes.length]
+          const next = nodes[(i + 1) % nodes.length];
           return (
             <line
               key={`ring-${node.name}`}
@@ -165,7 +163,7 @@ function ConstellationMap({ web3Networks }) {
               vectorEffect="non-scaling-stroke"
               style={{ animationDelay: `${i * 0.4}s` }}
             />
-          )
+          );
         })}
       </svg>
 
@@ -184,8 +182,8 @@ function ConstellationMap({ web3Networks }) {
         <div
           key={node.name}
           className="constellation-node"
-          ref={(element) => {
-            nodeRefs.current[index] = element
+          ref={element => {
+            nodeRefs.current[index] = element;
           }}
           style={{
             left: `${node.x}%`,
@@ -209,7 +207,7 @@ function ConstellationMap({ web3Networks }) {
         </div>
       ))}
     </div>
-  )
+  );
 }
 
 export function Web3Section({ web3Networks, web3Pillars }) {
@@ -227,12 +225,12 @@ export function Web3Section({ web3Networks, web3Pillars }) {
                 <em>On-Chain.</em>
               </h2>
               <p className="section-sub" style={{ marginBottom: 0 }}>
-                Hive3 is the only community platform built from the ground up for the decentralized
-                web. Real ownership, real data sovereignty, real value.
+                Hive3 is the only community platform built from the ground up for the decenralized
+                web. Real ownership, real data soveregnty, endless monetization
               </p>
             </div>
             <div className="web3-pillars">
-              {web3Pillars.map((pillar) => (
+              {web3Pillars.map(pillar => (
                 <div className="web3-pillar" key={pillar.title}>
                   <div className="web3-pillar-icon">{pillar.icon}</div>
                   <div>
@@ -247,8 +245,13 @@ export function Web3Section({ web3Networks, web3Pillars }) {
 
         {/* Constellation Web - Full Width */}
         <Reveal>
-          <div className="constellation-wrapper">
-            <ConstellationMap web3Networks={web3Networks} />
+          <div className="web3-ecosystem-block">
+            <div className="web3-ecosystem-header">
+              <h3 className="web3-ecosystem-title">Blockchain agnostic from day one.</h3>
+            </div>
+            <div className="constellation-wrapper">
+              <ConstellationMap web3Networks={web3Networks} />
+            </div>
           </div>
         </Reveal>
 
@@ -261,7 +264,7 @@ export function Web3Section({ web3Networks, web3Pillars }) {
                 { name: 'Solana', icon: '/network-icons/solana.svg' },
                 { name: 'Hyperliquid', icon: '/network-icons/hyperliquid.svg' },
                 { name: 'BNB', icon: '/network-icons/bnb.svg' },
-              ].map((chain) => (
+              ].map(chain => (
                 <div key={chain.name} className="constellation-node coming-soon-node">
                   <div className="constellation-node-glow" />
                   <div className="constellation-node-icon-wrap">
@@ -280,5 +283,5 @@ export function Web3Section({ web3Networks, web3Pillars }) {
         </Reveal>
       </div>
     </section>
-  )
+  );
 }

@@ -878,6 +878,32 @@
 }
 
 /* ── CONSTELLATION WEB (Full Width) ── */
+.web3-ecosystem-block {
+  margin-top: 28px;
+}
+
+.web3-ecosystem-header {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.web3-ecosystem-title {
+  margin: 0;
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 44px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+@media (min-width: 901px) {
+  .web3-ecosystem-title {
+    white-space: nowrap;
+  }
+}
+
 .constellation-wrapper {
   position: relative;
   margin-top: 40px;
@@ -1233,6 +1259,15 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .web3-ecosystem-header {
+    margin-bottom: 4px;
+  }
+
+  .web3-ecosystem-title {
+    font-size: clamp(28px, 8vw, 44px);
+    line-height: 1;
+  }
+
   .constellation-container {
     height: 360px;
   }
