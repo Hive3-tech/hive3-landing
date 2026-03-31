@@ -1,11 +1,12 @@
 export function Reveal({
-  as: Tag = 'div',
+  as = 'div',
   children,
   className = '',
   delay = 0,
   style,
   ...props
 }) {
+  const Component = as
   const classes = ['reveal', className].filter(Boolean).join(' ')
   const mergedStyle = {
     ...style,
@@ -13,8 +14,8 @@ export function Reveal({
   }
 
   return (
-    <Tag className={classes} style={mergedStyle} {...props}>
+    <Component className={classes} style={mergedStyle} {...props}>
       {children}
-    </Tag>
+    </Component>
   )
 }

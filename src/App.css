@@ -268,7 +268,7 @@
   z-index: 1;
   overflow: hidden;
   user-select: none;
-  pointer-events: none;
+  pointer-events: auto;
   inset: 84px 0 28px;
 }
 
@@ -281,25 +281,96 @@
   opacity: 0.07;
 }
 
+@keyframes heroBadgeFloat {
+  0%,
+  100% {
+    transform:
+      translate3d(
+        calc(var(--badge-x, 0px) + var(--repel-x, 0px)),
+        calc(var(--badge-y, 0px) + var(--repel-y, 0px)),
+        0
+      )
+      rotate(calc(var(--badge-tilt, 0deg) * -0.45));
+  }
+
+  25% {
+    transform:
+      translate3d(
+        calc(var(--badge-x, 0px) + var(--repel-x, 0px) + var(--float-x, 12px)),
+        calc(var(--badge-y, 0px) + var(--repel-y, 0px) + calc(var(--float-y, -10px) * 0.55)),
+        0
+      )
+      rotate(calc(var(--badge-tilt, 0deg) * 0.3));
+  }
+
+  50% {
+    transform:
+      translate3d(
+        calc(var(--badge-x, 0px) + var(--repel-x, 0px) + calc(var(--float-x, 12px) * -0.6)),
+        calc(var(--badge-y, 0px) + var(--repel-y, 0px) + var(--float-y, -10px)),
+        0
+      )
+      rotate(calc(var(--badge-tilt, 0deg) * 0.55));
+  }
+
+  75% {
+    transform:
+      translate3d(
+        calc(var(--badge-x, 0px) + var(--repel-x, 0px) + calc(var(--float-x, 12px) * 0.38)),
+        calc(var(--badge-y, 0px) + var(--repel-y, 0px) + calc(var(--float-y, -10px) * -0.4)),
+        0
+      )
+      rotate(calc(var(--badge-tilt, 0deg) * -0.2));
+  }
+}
+
 .hero-avatar-badge {
   position: absolute;
   top: 0;
   left: 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px 6px 6px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  box-shadow: 0 18px 34px rgba(5, 8, 18, 0.22);
+  pointer-events: auto;
+  transform: translate3d(var(--badge-x, 0px), var(--badge-y, 0px), 0);
+  animation: heroBadgeFloat var(--float-duration, 9s) cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  animation-delay: var(--badge-delay, 0s);
   will-change: transform;
   opacity: 0;
   transition: opacity 160ms ease;
-  max-width: 228px;
 }
 
-.hero-avatar-badge.is-wide-label {
+.hero-avatar-badge:hover {
+  z-index: 4;
+}
+
+.hero-avatar-badge-shell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 228px;
+  padding: 6px 14px 6px 6px;
+  background: rgba(17, 21, 34, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  box-shadow:
+    0 18px 34px rgba(5, 8, 18, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(14px);
+  transition:
+    transform 220ms cubic-bezier(0.2, 0.85, 0.32, 1),
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    background 220ms ease;
+}
+
+.hero-avatar-badge:hover .hero-avatar-badge-shell {
+  transform: translateY(-12px) scale(1.03);
+  border-color: rgba(245, 200, 66, 0.35);
+  background: rgba(21, 25, 38, 0.96);
+  box-shadow:
+    0 24px 42px rgba(5, 8, 18, 0.34),
+    0 0 28px rgba(245, 200, 66, 0.1);
+}
+
+.hero-avatar-badge.is-wide-label .hero-avatar-badge-shell {
   max-width: 272px;
 }
 
@@ -2230,7 +2301,7 @@
     max-width: 48ch;
   }
 
-  .hero-avatar-badge {
+  .hero-avatar-badge-shell {
     gap: 7px;
     padding: 5px 12px 5px 5px;
   }
@@ -2587,7 +2658,7 @@
     -webkit-mask-image: none;
   }
 
-  .hero-avatar-badge {
+  .hero-avatar-badge-shell {
     gap: 6px;
     padding: 4px 10px 4px 4px;
   }
@@ -2679,13 +2750,24 @@
   .reveal,
   .ticker-inner,
   .community-track,
-  .hero-avatar-badge,
   .hero-eyebrow-dot,
   .rotating-word-text {
     animation: none;
     transition: none;
     transform: none;
     opacity: 1;
+  }
+
+  .hero-avatar-badge {
+    animation: none;
+    transform: translate3d(var(--badge-x, 0px), var(--badge-y, 0px), 0);
+    opacity: 1;
+  }
+
+  .hero-avatar-badge-shell,
+  .hero-avatar-badge:hover .hero-avatar-badge-shell {
+    transition: none;
+    transform: none;
   }
 
   .ai-screen-flip,

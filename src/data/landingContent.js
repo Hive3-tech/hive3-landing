@@ -45,13 +45,13 @@ export const avatarBadges = [
   },
   {
     initials: 'EN',
-    name: 'Endevo',
+    name: 'ENDevo',
     role: 'Builder Community',
     image: '/communities/endevo-square.png',
   },
   {
     initials: 'FS',
-    name: 'Fred Studios',
+    name: 'FREDD Studios',
     role: 'Creative Studio',
     image:
       'https://lh3.googleusercontent.com/a/ACg8ocIDAJ0SFbDWHoBIu41o0QdDnOuZ9vfTHSPnm7BOAUEUo81BMuM=s96-c',
@@ -59,13 +59,13 @@ export const avatarBadges = [
   {
     initials: 'ED',
     name: 'Education DAO',
-    role: 'Education Community',
+    role: 'Education',
     image: '/communities/edao-square.png',
   },
   {
     initials: 'PC',
-    name: 'Play for Change',
-    role: 'Music Community',
+    name: 'Play4Change',
+    role: 'Education',
     image: '/communities/play-for-change.jpeg',
   },
   {
