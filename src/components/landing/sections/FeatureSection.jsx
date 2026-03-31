@@ -12,8 +12,10 @@ export function FeatureSection({ featureCards }) {
               One Platform, <em>Infinite</em> Ways to Build
             </h2>
             <p className="section-sub">
-              Everything your community needs: feeds, events, media, education, virtual spaces, and
-              real revenue tools in one Web3 platform.
+              Built for Communities That Want More. Your own private social network, integrated
+              multi-channel communication, events, media, education, 3D virtual spaces, and real
+              revenue tools — all in one place. No patchwork of apps. No limits on what you can
+              build.
             </p>
           </div>
 

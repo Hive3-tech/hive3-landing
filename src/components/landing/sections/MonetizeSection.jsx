@@ -12,8 +12,8 @@ export function MonetizeSection({ revenueCards }) {
               Turn Your Community Into a <em>Revenue Machine</em>
             </h2>
             <p className="section-sub section-sub-spaced">
-              Sell memberships, premium content, events, courses, content, and collect rewards.
-              Multiple revenue streams, onfrastructure, and community.
+              Sell memberships, premium content, courses, and events. Collect rewards. Stack revenue
+              streams — all from one platform built to turn community into commerce.
             </p>
             <a className="btn btn-hero" href="#cta">
               Start earning <span aria-hidden="true">→</span>

@@ -1,6 +1,6 @@
-import { Reveal } from '../Reveal'
+import { Reveal } from '../Reveal';
 
-const APP_LOGIN_URL = 'https://app.hive3.tech/login'
+const APP_LOGIN_URL = 'https://app.hive3.tech/login';
 
 export function CtaSection() {
   return (
@@ -13,24 +13,16 @@ export function CtaSection() {
             <em>On-Chain Community?</em>
           </h2>
           <p className="cta-sub">
-            Join thousands of creators and builders who chose ownership over
-            algorithms.
+            Join thousands of creators and builders who chose ownership over algorithms.
           </p>
           <div className="cta-form">
-            <a
-              className="btn btn-hero"
-              href={APP_LOGIN_URL}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a className="btn btn-hero" href={APP_LOGIN_URL} target="_blank" rel="noreferrer">
               Get started <span aria-hidden="true">→</span>
             </a>
           </div>
-          <p className="cta-note">
-            Free to start. No credit card required. Cancel anytime.
-          </p>
+          <p className="cta-note">Free to start. Canel anytime.</p>
         </Reveal>
       </div>
     </section>
-  )
+  );
 }

@@ -53,7 +53,8 @@ export const avatarBadges = [
     initials: 'FS',
     name: 'Fred Studios',
     role: 'Creative Studio',
-    image: 'https://lh3.googleusercontent.com/a/ACg8ocIDAJ0SFbDWHoBIu41o0QdDnOuZ9vfTHSPnm7BOAUEUo81BMuM=s96-c',
+    image:
+      'https://lh3.googleusercontent.com/a/ACg8ocIDAJ0SFbDWHoBIu41o0QdDnOuZ9vfTHSPnm7BOAUEUo81BMuM=s96-c',
   },
   {
     initials: 'ED',
@@ -71,7 +72,8 @@ export const avatarBadges = [
     initials: 'FD',
     name: 'Falecia Dunn',
     role: 'Creator',
-    image: 'https://lh3.googleusercontent.com/a/ACg8ocKqX2_GlxD0vry34ws6wl7WJvfmiWv0hsOuaxm3EaLGqECjKg=s96-c',
+    image:
+      'https://lh3.googleusercontent.com/a/ACg8ocKqX2_GlxD0vry34ws6wl7WJvfmiWv0hsOuaxm3EaLGqECjKg=s96-c',
   },
   {
     initials: 'PB',
@@ -121,38 +123,39 @@ export const trustItems = [
 export const featureCards = [
   {
     icon: '📡',
-    title: 'Community Feeds',
+    title: "Build Your Community's Social Network",
     description:
-      'Share updates, spark conversations, and keep your community engaged in a feed you actually own.',
+      "Private feeds, real conversations, and a space that's entirely yours. Post updates, engage your members, and monetize the community you've worked hard to build.",
   },
   {
     icon: '🎥',
-    title: 'Live Video',
+    title: 'Go Live Everywhere at Once',
     description:
-      'Host meetings, broadcast live, and create high-value live experiences for your members.',
+      'Host virtual events and content and broadcast them simultaneously across every channel your audience already calls home. Zero friction. Maximum reach. Every time.',
   },
   {
     icon: '🗂️',
-    title: 'Media Center',
+    title: 'Publish, Build, and Get Paid',
     description:
-      'Share images, videos, and documents. Build a rich content library your audience can explore.',
+      'Share images, articles, and videos with the audience that matters most to you. Every piece of content is a potential income stream. You control and monetize all of it.',
   },
   {
     icon: '🗓️',
-    title: 'Events',
-    description: 'Host live events, virtual meetups, IRL gatherings, and token-gated experiences.',
+    title: 'Host, Promote, and Reward Events',
+    description:
+      'Virtual AMAs, conferences, hackathons, gaming tournaments, marketplaces, and IRL promotion,  all in one place. Integrate your favorite tools and reward the participants who show up.',
   },
   {
     icon: '🏛️',
-    title: 'Spaces',
+    title: 'Your Stage. Your Brand. Your Revenue',
     description:
-      'Create focused areas for discussions, projects, and topic-specific collaboration.',
+      'Fully branded, immersive virtual event venues built to host your community — and monetize every seat, membership, and moment.',
   },
   {
     icon: '💼',
-    title: 'Opportunities Board',
+    title: 'Connect Talent to Opportunity in Real Time',
     description:
-      'Post jobs, partnerships, grants, and deals. Connect your community with real opportunities.',
+      'Post jobs, find a co-founder, or get matched to opportunities, and let AI and on-chain reputations do the matching. The right people find the right opportunities automatically based on verifiable signals.',
   },
 ];
 
