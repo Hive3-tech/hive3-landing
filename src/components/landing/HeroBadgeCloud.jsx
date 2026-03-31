@@ -5,14 +5,14 @@ const DESKTOP_PERIMETER = {
   bottomY: 87,
   leftX: 7,
   rightX: 93,
-  horizontalAnchorStart: 32,
-  horizontalAnchorEnd: 68,
-  horizontalLaneStart: 24,
-  horizontalLaneEnd: 76,
-  verticalAnchorStart: 34,
-  verticalAnchorEnd: 66,
-  verticalLaneStart: 28,
-  verticalLaneEnd: 72,
+  horizontalAnchorStart: 25,
+  horizontalAnchorEnd: 75,
+  horizontalLaneStart: 17,
+  horizontalLaneEnd: 83,
+  verticalAnchorStart: 32.5,
+  verticalAnchorEnd: 67.5,
+  verticalLaneStart: 26,
+  verticalLaneEnd: 74,
   horizontalBand: 5,
   verticalBand: 4,
 };
@@ -22,14 +22,14 @@ const LARGE_LAPTOP_PERIMETER = {
   bottomY: 86,
   leftX: 8,
   rightX: 92,
-  horizontalAnchorStart: 31,
-  horizontalAnchorEnd: 69,
-  horizontalLaneStart: 24,
-  horizontalLaneEnd: 76,
-  verticalAnchorStart: 35,
-  verticalAnchorEnd: 65,
-  verticalLaneStart: 29,
-  verticalLaneEnd: 71,
+  horizontalAnchorStart: 26,
+  horizontalAnchorEnd: 74,
+  horizontalLaneStart: 18,
+  horizontalLaneEnd: 82,
+  verticalAnchorStart: 33.5,
+  verticalAnchorEnd: 66.5,
+  verticalLaneStart: 27.5,
+  verticalLaneEnd: 72.5,
   horizontalBand: 5,
   verticalBand: 4,
 };
@@ -39,14 +39,14 @@ const LAPTOP_PERIMETER = {
   bottomY: 86,
   leftX: 9,
   rightX: 91,
-  horizontalAnchorStart: 33,
-  horizontalAnchorEnd: 67,
-  horizontalLaneStart: 25,
-  horizontalLaneEnd: 75,
-  verticalAnchorStart: 38,
-  verticalAnchorEnd: 62,
-  verticalLaneStart: 31,
-  verticalLaneEnd: 69,
+  horizontalAnchorStart: 28,
+  horizontalAnchorEnd: 72,
+  horizontalLaneStart: 20,
+  horizontalLaneEnd: 80,
+  verticalAnchorStart: 36.8,
+  verticalAnchorEnd: 63.2,
+  verticalLaneStart: 29,
+  verticalLaneEnd: 71,
   horizontalBand: 5,
   verticalBand: 4,
 };
@@ -56,14 +56,14 @@ const TABLET_PERIMETER = {
   bottomY: 84,
   leftX: 10,
   rightX: 90,
-  horizontalAnchorStart: 35,
-  horizontalAnchorEnd: 65,
-  horizontalLaneStart: 28,
-  horizontalLaneEnd: 72,
-  verticalAnchorStart: 40,
-  verticalAnchorEnd: 60,
-  verticalLaneStart: 33,
-  verticalLaneEnd: 67,
+  horizontalAnchorStart: 30,
+  horizontalAnchorEnd: 70,
+  horizontalLaneStart: 23,
+  horizontalLaneEnd: 77,
+  verticalAnchorStart: 39,
+  verticalAnchorEnd: 61,
+  verticalLaneStart: 32,
+  verticalLaneEnd: 68,
   horizontalBand: 5,
   verticalBand: 4,
 };
@@ -82,16 +82,8 @@ function clamp(value, min, max) {
 }
 
 function getVisibleBadgeCount(viewportWidth) {
-  if (viewportWidth <= 720) {
+  if (viewportWidth <= 1084) {
     return 0;
-  }
-
-  if (viewportWidth <= 840) {
-    return 4;
-  }
-
-  if (viewportWidth <= 1080) {
-    return 4;
   }
 
   if (viewportWidth <= 1280) {
