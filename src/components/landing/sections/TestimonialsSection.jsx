@@ -36,18 +36,17 @@ export function TestimonialsSection({ communityShowcase, testimonials }) {
                     className={`community-card ${
                       community.fit === 'contain' ? 'is-contained' : ''
                     }`}
-                    key={`${community.name}-${rowIndex}-${itemIndex}`}
+                    key={`${community.id || community.image}-${rowIndex}-${itemIndex}`}
                   >
                     <img
                       className={`community-card-image ${
                         community.fit === 'contain' ? 'is-contained' : ''
                       }`}
                       src={community.image}
-                      alt={community.name}
+                      alt={community.alt || community.name || 'Community showcase logo'}
                       loading="lazy"
                     />
                     <div className="community-card-overlay"></div>
-                    <div className="community-card-title">{community.name}</div>
                   </article>
                 ))}
               </div>

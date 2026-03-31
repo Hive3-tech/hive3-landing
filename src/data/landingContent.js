@@ -286,24 +286,17 @@ export const testimonials = [
   },
 ];
 
-export const communityShowcase = [
-  { name: 'Hashed', image: '/communities/Hashed.png', fit: 'cover' },
-  { name: '10KA', image: '/communities/10ka.jpg', fit: 'contain' },
-  { name: 'HackenAI', image: '/communities/HackenAI.png', fit: 'contain' },
-  { name: 'Conflux', image: '/communities/ConfluxBanner.png', fit: 'contain' },
-  { name: 'Cre8ivs Lead', image: '/communities/Cre8ivsLeadBanner.jpg', fit: 'contain' },
-  { name: 'Bellwether Arts', image: '/communities/bellwether-arts.png', fit: 'cover' },
-  { name: 'EDAO', image: '/communities/EDAO.png', fit: 'cover' },
-  { name: 'Andrometa', image: '/communities/Andrometa.jpg', fit: 'cover' },
-  { name: 'Awaken Fighter', image: '/communities/AwakenFighterLandscape.jpg', fit: 'cover' },
-  { name: 'Astra Nova', image: '/communities/AstraNova.png', fit: 'cover' },
-  { name: 'BanklessDAO', image: '/communities/BanklessDaoLogo.png', fit: 'contain' },
-  { name: 'Ascend The End', image: '/communities/AscendTheEnd.png', fit: 'contain' },
-  { name: 'Bellwether', image: '/communities/logo_bellwether.png', fit: 'contain' },
-  { name: 'New Order', image: '/communities/NewOrder.jpg', fit: 'cover' },
-  { name: 'Gamma', image: '/communities/GammaIO.webp', fit: 'contain' },
-  { name: 'BT', image: '/communities/BTLOGO.avif', fit: 'contain' },
-];
+const communityShowcaseImages = Array.from({ length: 18 }, (_, index) => {
+  const fileNumber = String(index + 1).padStart(2, '0');
+  return `/new-communitiy-logos/logo-${fileNumber}.png`;
+});
+
+export const communityShowcase = communityShowcaseImages.map((image, index) => ({
+  id: `community-logo-${index + 1}`,
+  image,
+  fit: 'contain',
+  alt: 'Community showcase logo',
+}));
 
 export const steps = [
   {
