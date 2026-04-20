@@ -1,10 +1,19 @@
-const APP_LOGIN_URL = 'https://app.hive3.tech/login'
+const DEFAULT_APP_LOGIN_URL = 'https://app.hive3.tech/login'
 
-export function SiteHeader({ navLinks, menuOpen, onCloseMenu, onToggleMenu }) {
+export function SiteHeader({
+  navLinks,
+  menuOpen,
+  onCloseMenu,
+  onToggleMenu,
+  logoHref = '#top',
+  appLoginUrl = DEFAULT_APP_LOGIN_URL,
+  primaryCtaLabel = 'Get started',
+  secondaryCtaLabel = 'Log in',
+}) {
   return (
     <header className="site-nav">
       <div className="nav-shell">
-        <a className="nav-logo" href="#top" onClick={onCloseMenu}>
+        <a className="nav-logo" href={logoHref} onClick={onCloseMenu}>
           <img className="nav-logo-image" src="/hive3-logo.svg" alt="Hive3" />
         </a>
 
@@ -34,21 +43,21 @@ export function SiteHeader({ navLinks, menuOpen, onCloseMenu, onToggleMenu }) {
           <div className="nav-ctas">
             <a
               className="btn btn-ghost"
-              href={APP_LOGIN_URL}
+              href={appLoginUrl}
               target="_blank"
               rel="noreferrer"
               onClick={onCloseMenu}
             >
-              Log in
+              {secondaryCtaLabel}
             </a>
             <a
               className="btn btn-primary"
-              href={APP_LOGIN_URL}
+              href={appLoginUrl}
               target="_blank"
               rel="noreferrer"
               onClick={onCloseMenu}
             >
-              Get started <span aria-hidden="true">→</span>
+              {primaryCtaLabel} <span aria-hidden="true">→</span>
             </a>
           </div>
         </div>

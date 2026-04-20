@@ -1,0 +1,33 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[redirects]]
+  from = "http://ed.hive3.tech/edtech/*"
+  to = "/edtech/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "https://ed.hive3.tech/edtech/*"
+  to = "/edtech/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "http://ed.hive3.tech/*"
+  to = "https://ed.hive3.tech/edtech/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://ed.hive3.tech/*"
+  to = "/edtech/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/edtech"
+  to = "/edtech/"
+  status = 301
+  force = false

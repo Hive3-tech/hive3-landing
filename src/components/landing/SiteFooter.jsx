@@ -31,18 +31,23 @@ function SocialIcon({ platform }) {
   );
 }
 
-export function SiteFooter({ footerColumns, socialLinks }) {
+export function SiteFooter({
+  footerColumns,
+  socialLinks,
+  logoHref = '#top',
+  brandDescription = 'Bulid, own, and monetize your community “Hive” with real web3 ownership. No Algorithms, no intermediaries, no limits.',
+  copyrightText = '© 2026 Hive3. All rights reserved. Built for the decentralized future.',
+}) {
   return (
     <footer className="site-footer">
       <div className="container footer-inner">
         <div className="footer-top">
           <div>
-            <a className="nav-logo footer-logo" href="#top">
+            <a className="nav-logo footer-logo" href={logoHref}>
               <img className="nav-logo-image" src="/hive3-logo.svg" alt="Hive3" />
             </a>
             <p className="footer-brand-desc">
-              Bulid, own, and monetize your community “Hive” with real web3 ownership. No
-              Algorithms, no intermediaries, no limits.
+              {brandDescription}
             </p>
           </div>
 
@@ -62,7 +67,7 @@ export function SiteFooter({ footerColumns, socialLinks }) {
 
         <div className="footer-bottom">
           <p className="footer-copy">
-            © 2026 Hive3. All rights reserved. Built for the decentralized future.
+            {copyrightText}
           </p>
           <div className="footer-socials">
             {socialLinks.map(social => (
