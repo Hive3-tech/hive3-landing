@@ -15,15 +15,15 @@
   force = true
 
 [[redirects]]
-  from = "http://ed.hive3.tech/*"
-  to = "https://ed.hive3.tech/edtech/:splat"
-  status = 301
+  from = "http://ed.hive3.tech/"
+  to = "/edtech/"
+  status = 200
   force = true
 
 [[redirects]]
-  from = "https://ed.hive3.tech/*"
-  to = "/edtech/:splat"
-  status = 301
+  from = "https://ed.hive3.tech/"
+  to = "/edtech/"
+  status = 200
   force = true
 
 [[redirects]]
