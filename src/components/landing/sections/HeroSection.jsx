@@ -3,6 +3,7 @@ import { HeroBadgeCloud } from '../HeroBadgeCloud';
 import { Reveal } from '../Reveal';
 
 const APP_LOGIN_URL = 'https://app.hive3.tech/login';
+const APP_PRICING_URL = 'https://app.hive3.tech/pricing';
 
 export function HeroSection({ avatarBadges, onOpenTrailer, rotatingWord, tickerItems }) {
   const heroContentRef = useRef(null);
@@ -60,6 +61,9 @@ export function HeroSection({ avatarBadges, onOpenTrailer, rotatingWord, tickerI
             <button type="button" className="btn btn-hero-ghost" onClick={onOpenTrailer}>
               Watch trailer <span aria-hidden="true">▶</span>
             </button>
+            <a className="btn btn-hero" href={APP_PRICING_URL} target="_blank" rel="noreferrer">
+              See pricing <span aria-hidden="true">$</span>
+            </a>
           </Reveal>
         </div>
       </section>

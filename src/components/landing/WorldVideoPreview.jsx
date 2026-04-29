@@ -1,12 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 
-const VIDEO_SOURCES = ['/Lounge.mp4', '/Campus.mp4', '/Speakeasy.mp4', '/Tower.mp4'];
+const VIDEO_SOURCES = [
+  '/video-optimized/Lounge-landing.mp4',
+  '/video-optimized/Campus-landing.mp4',
+  '/video-optimized/Speakeasy-landing.mp4',
+  '/video-optimized/Tower-landing.mp4',
+];
 
 const VIDEO_POSTERS = {
-  '/Lounge.mp4': '/Lounge-poster.jpg',
-  '/Campus.mp4': '/Campus-poster.jpg',
-  '/Speakeasy.mp4': '/Speakeasy-poster.jpg',
-  '/Tower.mp4': '/Tower-poster.jpg',
+  '/video-optimized/Lounge-landing.mp4': '/Lounge-poster.jpg',
+  '/video-optimized/Campus-landing.mp4': '/Campus-poster.jpg',
+  '/video-optimized/Speakeasy-landing.mp4': '/Speakeasy-poster.jpg',
+  '/video-optimized/Tower-landing.mp4': '/Tower-poster.jpg',
 };
 
 const FADE_DURATION_MS = 1000;
@@ -169,7 +174,7 @@ export function WorldVideoPreview() {
           muted
           autoPlay
           playsInline
-          preload="auto"
+          preload={activeBuffer === index ? 'auto' : 'metadata'}
           loop={false}
           poster={VIDEO_POSTERS[source]}
           className={`mock-world-video${activeBuffer === index ? ' is-active' : ''}`}

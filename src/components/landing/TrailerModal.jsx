@@ -23,10 +23,11 @@ export function TrailerModal({ isOpen, onClose }) {
 
         <video
           className="trailer-video"
-          src="/Hive3Video.mp4"
+          src="/video-optimized/Hive3Video-720p.mp4"
           controls
           autoPlay
           playsInline
+          preload="none"
         >
           Your browser does not support the trailer video.
         </video>
