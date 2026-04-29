@@ -6,6 +6,7 @@ export const edtechNavLinks = [
   { href: '#system', label: 'System' },
   { href: '#flywheel', label: 'Flywheel' },
   { href: '#cta', label: 'Access' },
+  { href: 'https://app.hive3.tech/pricing', label: 'Pricing' },
 ]
 
 export const edtechHero = {

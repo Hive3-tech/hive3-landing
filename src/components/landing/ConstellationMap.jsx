@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef } from 'react'
 
 export function ConstellationMap({
   nodes: rawNodes,
-  centerImageSrc = '/hive3-sign.png',
+  centerImageSrc = '/logo.png',
   centerImageAlt = 'Hive3',
   centerEyebrow,
   centerTitle,

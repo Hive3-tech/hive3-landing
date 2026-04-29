@@ -60,6 +60,7 @@
 .nav-logo {
   display: inline-flex;
   align-items: center;
+  gap: 6px;
   text-decoration: none;
 }
 
@@ -68,7 +69,16 @@
   width: auto;
   height: 32px;
   max-width: min(140px, 32vw);
-  filter: brightness(0) invert(1);
+}
+
+.nav-logo-text {
+  color: var(--text-primary);
+  font-family: 'Orbitron', 'DM Sans', system-ui, sans-serif;
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-shadow: 0 0 0 currentColor, 0.35px 0 currentColor, -0.35px 0 currentColor;
 }
 
 .nav-panel {
@@ -2223,6 +2233,10 @@
 
 .footer-logo .nav-logo-image {
   height: 34px;
+}
+
+.footer-logo .nav-logo-text {
+  font-size: 1.2rem;
 }
 
 .footer-brand-desc {

@@ -44,7 +44,8 @@ export function SiteFooter({
         <div className="footer-top">
           <div>
             <a className="nav-logo footer-logo" href={logoHref}>
-              <img className="nav-logo-image" src="/hive3-logo.svg" alt="Hive3" />
+              <img className="nav-logo-image" src="/logo.png" alt="Hive3" />
+              <span className="nav-logo-text">HIVE3</span>
             </a>
             <p className="footer-brand-desc">
               {brandDescription}

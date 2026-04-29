@@ -20,7 +20,7 @@ export function CtaSection() {
               Get started <span aria-hidden="true">→</span>
             </a>
           </div>
-          <p className="cta-note">Free to start. Canel anytime.</p>
+          <p className="cta-note">Free to start. Cancel anytime.</p>
         </Reveal>
       </div>
     </section>

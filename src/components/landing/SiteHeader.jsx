@@ -14,7 +14,8 @@ export function SiteHeader({
     <header className="site-nav">
       <div className="nav-shell">
         <a className="nav-logo" href={logoHref} onClick={onCloseMenu}>
-          <img className="nav-logo-image" src="/hive3-logo.svg" alt="Hive3" />
+          <img className="nav-logo-image" src="/logo.png" alt="Hive3" />
+          <span className="nav-logo-text">HIVE3</span>
         </a>
 
         <button

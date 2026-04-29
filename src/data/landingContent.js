@@ -4,6 +4,7 @@ export const navLinks = [
   { href: '#web3', label: 'Web3' },
   { href: '#testimonials', label: 'Community' },
   { href: '#ai', label: 'AI' },
+  { href: 'https://app.hive3.tech/pricing', label: 'Pricing' },
 ];
 
 export const rotatingWords = ['Creators', 'Communities', 'Builders'];
