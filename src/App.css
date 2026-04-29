@@ -799,6 +799,50 @@
   padding: 24px;
 }
 
+.mock-content-video {
+  padding: 0;
+}
+
+.mock-world-preview {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  background: #05060a;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+}
+
+.mock-world-preview::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(7, 10, 16, 0.16), rgba(7, 10, 16, 0) 22%, rgba(7, 10, 16, 0.18)),
+    radial-gradient(circle at 50% 45%, rgba(255, 195, 67, 0.08), transparent 55%);
+}
+
+.mock-world-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transition: opacity 1s linear;
+}
+
+.mock-world-video.is-active {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mock-world-video {
+    transition-duration: 0s;
+  }
+}
+
 .mock-feed-item {
   display: flex;
   gap: 12px;
@@ -2797,6 +2841,14 @@
   .mock-content,
   .ai-visual-card {
     padding: 20px;
+  }
+
+  .mock-content-video {
+    padding: 0;
+  }
+
+  .mock-world-preview {
+    height: 320px;
   }
 
   .mock-metrics {

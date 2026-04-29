@@ -41,6 +41,19 @@ function App() {
   const closeMenu = () => setMenuOpen(false)
 
   useEffect(() => {
+    if (!window.location.hash) {
+      return undefined
+    }
+
+    const target = document.querySelector(window.location.hash)
+    const scrollFrame = window.requestAnimationFrame(() => {
+      target?.scrollIntoView()
+    })
+
+    return () => window.cancelAnimationFrame(scrollFrame)
+  }, [])
+
+  useEffect(() => {
     if (!trailerOpen) {
       document.body.style.overflow = ''
       return undefined
