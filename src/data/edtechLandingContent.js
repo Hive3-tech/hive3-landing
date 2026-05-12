@@ -17,7 +17,7 @@ export const edtechHero = {
   description:
     'Hive3 is the coordination layer that turns every community interaction into a verifiable credential, and every credential into real economic opportunity.',
   primaryCtaLabel: 'Start participating',
-  secondaryCtaLabel: 'See the model',
+  secondaryCtaLabel: 'See Pricing',
 }
 
 export const edtechHeroPills = [

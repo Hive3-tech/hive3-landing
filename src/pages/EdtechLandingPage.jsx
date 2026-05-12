@@ -31,6 +31,7 @@ import {
 import { useLandingPageEffects } from '../hooks/useLandingPageEffects'
 
 const APP_LOGIN_URL = 'https://app.hive3.tech/login'
+const APP_PRICING_URL = 'https://app.hive3.tech/pricing'
 
 function EdtechProblemCard({ icon, title, description, delay }) {
   return (
@@ -161,8 +162,8 @@ export function EdtechLandingPage() {
                 <a className="btn btn-hero" href={APP_LOGIN_URL} target="_blank" rel="noreferrer">
                   {edtechHero.primaryCtaLabel} <span aria-hidden="true">→</span>
                 </a>
-                <a className="btn btn-hero-ghost" href="#opportunity">
-                  {edtechHero.secondaryCtaLabel}
+                <a className="btn btn-hero-ghost" href={APP_PRICING_URL} target="_blank" rel="noreferrer">
+                  {edtechHero.secondaryCtaLabel} <span aria-hidden="true">$</span>
                 </a>
               </div>
             </Reveal>
@@ -399,6 +400,9 @@ export function EdtechLandingPage() {
               <div className="edtech-route-note-links">
                 <a className="btn btn-primary" href={APP_LOGIN_URL} target="_blank" rel="noreferrer">
                   {edtechFinalCta.primaryCtaLabel}
+                </a>
+                <a className="btn btn-primary" href={APP_PRICING_URL} target="_blank" rel="noreferrer">
+                  See pricing
                 </a>
                 <a className="btn btn-ghost" href={edtechFinalCta.secondaryCtaHref}>
                   {edtechFinalCta.secondaryCtaLabel}
